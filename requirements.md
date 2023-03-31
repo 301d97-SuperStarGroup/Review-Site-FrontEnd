@@ -25,10 +25,12 @@ OUT
 - This website will not be monetized to force user's to pay to access the material. 
 
 # MVP (minimum viable product) & Stretch Goals
-
+- Our MVP will consist of a functioning Front End that allows users to get, post, put, and delete reviews which will all be stored in a Mongo Database.  We will a working server that is connected to our Front End.  
+- Some of our stretch goals will be to display games from our Public API that have reviews attached to them on page load, stars added to reviews, and multiple routes on our page.
 
 # Data Flow
-
+- The flow of our data will consist of generating games through our API to be displayed on page load, these games will have reviews attached to them, if anyone has submitted one.  When users go to submit a review the information will be sent to our backend and connect to our Mongo to store that review in our database. Each reivew will have a unique id that we will tie to the game the review was submitted on.  
 
 # Non-functional requirements
-
+- For security will be implementing Auth0 to allow users security for their created reviews. This is important to us because we want users to have the ability to have different accounts for different game reviews they have created. 
+- We will be utilizing the CRUD model for testing purposes.  We want to ensure that users can create, update, delete, and retrive reviews that have been created.  We want this to have full functionality so users can have access to all the different ways reviews can be made.
