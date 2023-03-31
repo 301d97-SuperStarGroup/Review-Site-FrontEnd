@@ -14,8 +14,9 @@ The problem or pain point we are looking to solve is to create a place for users
 
 ## Domain Modeling
 
-![DOM Image](Domain-Modeling.png)
+![DOM Backend Image](DOM-Backend.png)
 
+![DOM Frontend Image](DOM-Frontend.png)
 
 ## Data Schema
 
