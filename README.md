@@ -8,6 +8,10 @@ We are creating a game review site that will allow users to create, update, dele
 
 The problem or pain point we are looking to solve is to create a place for users to explore online games, track games they're interested in, and create reviews for games they have played.
 
+## Free To Game API
+
+https://www.freetogame.com/
+
 ## Wireframing
 
 ![Wirefrmae Image](301-project-whiteboard.png)
