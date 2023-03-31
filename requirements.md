@@ -29,7 +29,9 @@ OUT
 - Some of our stretch goals will be to display games from our Public API that have reviews attached to them on page load, stars added to reviews, and multiple routes on our page.
 
 # Data Flow
-- The flow of our data will consist of generating games through our API to be displayed on page load, these games will have reviews attached to them, if anyone has submitted one.  When users go to submit a review the information will be sent to our backend and connect to our Mongo to store that review in our database. Each reivew will have a unique id that we will tie to the game the review was submitted on.  
+- The flow of our data will consist of generating games through our API to be displayed on page load, these games will have reviews attached to them, if anyone has submitted one.  When users go to submit a review the information will be sent to our backend and connect to our Mongo to store that review in our database. Each reivew will have a unique id that we will tie to the game the review was submitted on. Ideally, users will be able to navigate to a home page where they have created reviews or saved games they want to view at a later time and have an additional page that will be generated games to be viewed/reviewed.
+![Screenshot 2023-03-31 142653](https://user-images.githubusercontent.com/109825175/229234717-2bd16ac6-9af8-4c0a-97f5-c35ff30342b6.png)
+
 
 # Non-functional requirements
 - For security will be implementing Auth0 to allow users security for their created reviews. This is important to us because we want users to have the ability to have different accounts for different game reviews they have created. 
