@@ -8,8 +8,8 @@ class About extends React.Component {
     return (
       <section id='aboutUsCards'>
 
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="holder.js/100px180" />
+        <Card style={{ width: '25rem' }}>
+          <Card.Img variant="top" src="" />
           <Card.Body>
             <Card.Title>Dajon Ewing</Card.Title>
             <Card.Text>
@@ -19,8 +19,8 @@ class About extends React.Component {
           </Card.Body>
         </Card>
 
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="holder.js/100px180" />
+        <Card style={{ width: '25rem' }}>
+          <Card.Img variant="top" src="./imgs/Laurence-picture.jpg" />
           <Card.Body>
             <Card.Title>Laurence </Card.Title>
             <Card.Text>
@@ -30,8 +30,8 @@ class About extends React.Component {
           </Card.Body>
         </Card>
 
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="holder.js/100px180" />
+        <Card style={{ width: '25rem' }}>
+          <Card.Img variant="top" src="./imgs/Reece-Alpaca.jpg" />
           <Card.Body>
             <Card.Title>Reece Renninger</Card.Title>
             <Card.Text>
@@ -41,7 +41,7 @@ class About extends React.Component {
           </Card.Body>
         </Card>
 
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '25rem' }}>
           <Card.Img variant="top" src="holder.js/100px180" />
           <Card.Body>
             <Card.Title>Sarah Glass</Card.Title>
