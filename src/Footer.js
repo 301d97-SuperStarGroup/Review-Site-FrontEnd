@@ -1,4 +1,5 @@
-import React from "react";
+'use strict';
+import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 
 class Footer extends React.Component {
