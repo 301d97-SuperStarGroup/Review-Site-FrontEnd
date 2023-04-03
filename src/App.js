@@ -4,13 +4,15 @@ import Header from './Header';
 import Footer from './Footer.js';
 import GamePage from './pages/GamePage.js';
 import About from './pages/About.js';
-import UserProfile from './UserProfile';
+import UserProfile from './UserProfile.js';
+import LoginButton from './LoginButton.js';
 
 import {
   BrowserRouter as Router,
   Routes,
   Route
 } from 'react-router-dom';
+import { Auth0Provider } from '@auth0/auth0-react';
 
 
 
@@ -25,6 +27,9 @@ class App extends React.Component {
   render() {
     return (
       <>
+      <Auth0Provider>
+      <LoginButton/>
+      </Auth0Provider>
         <Router>
           <Header />
           <Routes>
@@ -42,6 +47,11 @@ class App extends React.Component {
               exact path="/profile"
               element={<UserProfile />}
             >
+              {/* <Route
+                exact path="/login"
+                element={<LoginButton />}
+              >
+              </Route> */}
             </Route>
           </Routes>
           <Footer />
