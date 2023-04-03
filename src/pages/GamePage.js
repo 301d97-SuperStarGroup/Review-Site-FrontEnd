@@ -27,12 +27,12 @@ class GamePage extends React.Component {
       });
     }
   }
+  
+  componentDidMount(){
+    this.handleGameLoad();
+  }
+
   render() {
-
-
-    // componentDidMount(){
-    //   this.handleGameLoad();
-    // }
 
     //TODO: RETURN GAMES AS CARDS WITH BUTTONS TO ALLOW USERS TO SAVE TO THEIR PROFILE AND MAKE A REVIEW.
     // TODO: ALLOW A WAY FOR USER TO FILTER RESULTS BY PLATFORM OR CATEGORIES.
