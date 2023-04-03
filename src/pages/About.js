@@ -29,7 +29,7 @@ class About extends React.Component {
         </Card>
 
         <Card style={{ width: '25rem' }}>
-          <Card.Img variant="top" src="./imgs/Reece-Alpaca.jpg" />
+          <Card.Img variant="top" src="src/imgs/Reece-Alpaca.jpg" />
           <Card.Body>
             <Card.Title>Reece Renninger</Card.Title>
             <Card.Text>
