@@ -6,13 +6,14 @@ import GamePage from './pages/GamePage.js';
 import About from './pages/About.js';
 import UserProfile from './UserProfile.js';
 import LoginButton from './LoginButton.js';
+import LogoutButton from './LogoutButton.js'
 
 import {
   BrowserRouter as Router,
   Routes,
   Route
 } from 'react-router-dom';
-import { Auth0Provider } from '@auth0/auth0-react';
+
 
 
 
@@ -27,9 +28,10 @@ class App extends React.Component {
   render() {
     return (
       <>
-      <Auth0Provider>
+      
       <LoginButton/>
-      </Auth0Provider>
+      <LogoutButton/>
+      
         <Router>
           <Header />
           <Routes>
