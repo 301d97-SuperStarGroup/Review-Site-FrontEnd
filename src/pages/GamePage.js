@@ -1,6 +1,7 @@
 
 import axios from 'axios';
 import React from 'react';
+import { withAuth0 } from '@auth0/auth0-react';
 
 class GamePage extends React.Component {
   constructor(props){
@@ -11,9 +12,10 @@ class GamePage extends React.Component {
       games: []
     }
   }
+
   handleGameLoad = async (event) => {
     try {
-      let url = `https://www.freetogame.com/api/games/games`;
+      let url = `${process.env.REACT_APP_SERVER}/games`;
       let gameDataFromAxios = await axios.get(url);
       console.log(gameDataFromAxios.data);
       this.setState({
@@ -27,10 +29,29 @@ class GamePage extends React.Component {
       });
     }
   }
-  
-  componentDidMount(){
-    this.handleGameLoad();
+
+  async componentDidMount(){
+    if(this.props.auth0.isAuthenticated){
+      const response = await this.props.auth0.getIdTokenClaims();
+
+      const jwt = response.__raw;
+      
+
+      const config = {
+        headers: {"Authorization": `Bearer ${jwt}`},
+        method: 'get',
+        baseURL: process.env.REACT_APP_SERVER,
+        url: '/games'
+      }
+      let gameData = await axios(config);
+
+      this.setState ({
+        games: gameData.data
+      });
+    }
+
   }
+  // this.handleGameLoad();
 
   render() {
 
@@ -44,4 +65,4 @@ class GamePage extends React.Component {
   }
 }
 
-export default GamePage;
+export default withAuth0(GamePage);
