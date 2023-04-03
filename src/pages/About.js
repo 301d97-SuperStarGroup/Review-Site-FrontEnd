@@ -34,7 +34,7 @@ class About extends React.Component {
           <Card.Body>
             <Card.Title>Reece Renninger</Card.Title>
             <Card.Text>
-              Reece is going to be probably become a backend dev because he has no styling capabilities.
+              Reece is going to be probably become a backend dev because he has no styling capabilities and the front end hates him.
             </Card.Text>
 
           </Card.Body>
