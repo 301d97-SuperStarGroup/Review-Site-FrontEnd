@@ -1,10 +1,12 @@
 import React from 'react';
 
-class GamePage extends React.Component(){
-  render(){
-    return(
-
-    )
+class GamePage extends React.Component {
+  render() {
+    return (
+      <>
+        <h1>Game Page test</h1>
+      </>
+    );
   }
 }
 
