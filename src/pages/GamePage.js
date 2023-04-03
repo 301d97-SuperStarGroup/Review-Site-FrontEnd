@@ -15,13 +15,25 @@ class GamePage extends React.Component {
 
   handleGameLoad = async (event) => {
     try {
-      let url = `${process.env.REACT_APP_SERVER}/games`;
-      let gameDataFromAxios = await axios.get(url);
-      console.log(gameDataFromAxios.data);
-      this.setState({
-        games: gameDataFromAxios.data,
-        error: false
-      });
+      if(this.props.auth0.isAuthenticated){
+        const response = await this.props.auth0.getIdTokenClaims();
+  
+        const jwt = response.__raw;
+        
+  
+        const config = {
+          headers: {"Authorization": `Bearer ${jwt}`},
+          method: 'get',
+          baseURL: process.env.REACT_APP_SERVER,
+          url: '/games'
+        }
+        let gameData = await axios(config);
+  
+        this.setState ({
+          games: gameData.data,
+          error: false
+        });
+      }
     } catch (error) {
       this.setState({
         error: true,
@@ -30,28 +42,10 @@ class GamePage extends React.Component {
     }
   }
 
-  async componentDidMount(){
-    if(this.props.auth0.isAuthenticated){
-      const response = await this.props.auth0.getIdTokenClaims();
-
-      const jwt = response.__raw;
-      
-
-      const config = {
-        headers: {"Authorization": `Bearer ${jwt}`},
-        method: 'get',
-        baseURL: process.env.REACT_APP_SERVER,
-        url: '/games'
-      }
-      let gameData = await axios(config);
-
-      this.setState ({
-        games: gameData.data
-      });
-    }
+  componentDidMount(){
+    this.handleGameLoad();
 
   }
-  // this.handleGameLoad();
 
   render() {
 
