@@ -13,6 +13,7 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
+import { User } from '@auth0/auth0-react';
 
 
 
@@ -30,6 +31,7 @@ class App extends React.Component {
       <>
       
       <LoginButton/>
+      <UserProfile />
       <LogoutButton/>
       
         <Router>
@@ -45,16 +47,7 @@ class App extends React.Component {
               element={<About />}
             >
             </Route>
-            <Route
-              exact path="/profile"
-              element={<UserProfile />}
-            >
-              {/* <Route
-                exact path="/login"
-                element={<LoginButton />}
-              >
-              </Route> */}
-            </Route>
+        
           </Routes>
           <Footer />
         </Router>
