@@ -7,6 +7,7 @@ import About from './pages/About.js';
 import UserProfile from './UserProfile.js';
 import LoginButton from './LoginButton.js';
 import LogoutButton from './LogoutButton.js'
+import { withAuth0 } from '@auth0/auth0-react';
 
 import {
   BrowserRouter as Router,
@@ -29,8 +30,9 @@ class App extends React.Component {
   render() {
     return (
       <>
-      
-      <LoginButton/>
+      {
+        this.props.auth0.isAuthenticated ?
+        <>
       <UserProfile />
       <LogoutButton/>
       
@@ -51,11 +53,15 @@ class App extends React.Component {
           </Routes>
           <Footer />
         </Router>
+        </>
+            :
+            <LoginButton />
+          }
+          </>
 
-      </>
     );
   }
 }
 
-export default App;
+export default withAuth0(App);
 
