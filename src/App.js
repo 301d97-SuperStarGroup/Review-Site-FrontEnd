@@ -1,7 +1,9 @@
 import React from 'react';
 import './App.css';
 import './Header.js';
-import './GamePage.js';
+import './pages/GamePage.js';
+// import '/pages/About.js';
+// import ReactDOM from "react-dom/client";
 import {
   BrowserRouter as Router,
   Routes,
@@ -14,23 +16,24 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <h1>Test</h1>
+
         <Router>
           <Header />
           <Routes>
             <Route
-              exact path="/"
+              exact path=""
               element={<GamePage />}
             >
             </Route>
             <Route
-              exact path="/about"
+              exact path=""
               element={<About />}
             >
             </Route>
           </Routes>
           <Footer />
         </Router>
+
       </>
     );
   }
