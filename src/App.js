@@ -1,35 +1,41 @@
-'use strict';
+
 
 import React from 'react';
 import './App.css';
-import './Header.js';
-import './Footer.js';
-import './pages/GamePage.js';
-import './pages/About.js';
-// import ReactDOM from "react-dom/client";
+import Header from './Header';
+import Footer from './Footer.js';
+import GamePage from './pages/GamePage.js';
+import About from './pages/About.js';
+
 import {
   BrowserRouter as Router,
   Routes,
   Route
-} from 'react';
+} from 'react-router-dom';
 
 
 
 class App extends React.Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+
+  //   };
+  // }
+
   render() {
     return (
       <>
-        <h1>hello</h1>
         <Router>
           <Header />
           <Routes>
             <Route
-              exact path="/"
+              exact path="/games"
               element={<GamePage />}
             >
             </Route>
             <Route
-              exact path="/"
+              exact path="/about"
               element={<About />}
             >
             </Route>
