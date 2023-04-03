@@ -9,6 +9,11 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+.card-img-top{
+  width: fit-content;
+  height: fit-content;
+}
+
 .navbar-brand{
   
 }
