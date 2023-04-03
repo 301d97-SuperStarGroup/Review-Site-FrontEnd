@@ -7,9 +7,9 @@ class About extends React.Component {
   render() {
     return (
       <section id='aboutUsCards'>
-
+        {/* NEED TO GET IMAGES TO LOAD */}
         <Card style={{ width: '25rem' }}>
-          <Card.Img variant="top" src="" />
+          <Card.Img variant="top" src="src/imgs/DaJon-myProfile.jpg" />
           <Card.Body>
             <Card.Title>Dajon Ewing</Card.Title>
             <Card.Text>
@@ -20,7 +20,7 @@ class About extends React.Component {
         </Card>
 
         <Card style={{ width: '25rem' }}>
-          <Card.Img variant="top" src="./imgs/Laurence-picture.jpg" />
+          <Card.Img variant="top" src="src/imgs/Laurence-picture.jpg" />
           <Card.Body>
             <Card.Title>Laurence </Card.Title>
             <Card.Text>
@@ -42,7 +42,7 @@ class About extends React.Component {
         </Card>
 
         <Card style={{ width: '25rem' }}>
-          <Card.Img variant="top" src="holder.js/100px180" />
+          <Card.Img variant="top" src="src/imgs/Sarah-headshot.jpg" />
           <Card.Body>
             <Card.Title>Sarah Glass</Card.Title>
             <Card.Text>
