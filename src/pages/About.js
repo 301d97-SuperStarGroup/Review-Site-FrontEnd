@@ -13,7 +13,7 @@ class About extends React.Component {
         <Card style={{ width: '25rem' }}>
           <Card.Img variant="top" src={dajon} alt='DaJons Profile pic'/>
           <Card.Body>
-            <Card.Title>Dajon Ewing</Card.Title>
+            <Card.Title>DaJon Ewing</Card.Title>
             <Card.Text>
               test
             </Card.Text>
