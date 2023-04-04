@@ -192,9 +192,7 @@ class GamePage extends React.Component {
         )}
 
       </Container>
-          <UserHome 
-          savedGames={this.state.savedGames}
-          />
+         
       </>
     );
   }
