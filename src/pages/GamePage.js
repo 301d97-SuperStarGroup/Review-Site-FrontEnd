@@ -15,7 +15,8 @@ class GamePage extends React.Component {
       error: false,
       errorMessage: '',
       selectedGenre: '',
-      games: []
+      games: [],
+      filteredGames: []
     }
   }
 
@@ -30,9 +31,10 @@ class GamePage extends React.Component {
 
         const config = {
           headers: { "Authorization": `Bearer ${jwt}` },
-          method: 'get',
+          method: 'get', //post when saving
           baseURL: process.env.REACT_APP_SERVER,
           url: '/games'
+          //data property that will be our game object to save
         }
         let gameData = await axios(config);
 
@@ -40,6 +42,7 @@ class GamePage extends React.Component {
 
         this.setState({
           games: gameData.data,
+          filteredGames: gameData.data,
           error: false
         });
       }
@@ -58,12 +61,14 @@ class GamePage extends React.Component {
 
   handleGenreSelected = (event) => {
     let selectedGenre = event.target.value;
-    if (selectedGenre === '2d'){
-      let genreData = games.filter(g => g.genre === '2d')
+    console.log(this.state.games);
+      let genreData = this.state.games.filter(g => g.genre.toLowerCase() === selectedGenre.toLowerCase());
+      console.log(genreData);
+
       this.setState({
-        games: genreData
+        filteredGames: genreData
       })
-    }
+    
   }
 
 
@@ -75,14 +80,14 @@ class GamePage extends React.Component {
     // TODO: ALLOW A WAY FOR USER TO FILTER RESULTS BY PLATFORM OR CATEGORIES.
     return (
       <>
-      <Form onInput={this.submitHandler}>
+      <Form>
       <Form.Group >
         <Form.Select name='select' onChange={this.handleGenreSelected}>
           <option value="">View Games by Genre</option>
           <option value="2d">2d</option>
           <option value="3d">3d</option>
           <option value="action">action</option>
-          <option value="action-rpg">action rpg</option>
+          <option value="action-rpg">action-rpg</option>
           <option value="anime">anime</option>
           <option value="battle-royale">battle-royale</option>
           <option value="card">card</option>
@@ -106,7 +111,7 @@ class GamePage extends React.Component {
           <option value="pve">pve</option>
           <option value="pvp">pvp</option>
           <option value="racing">sports</option>
-          <option value="sailing"></option>
+          <option value="sailing">sailing</option>
           <option value="sandbox">sandbox</option>
           <option value="sci-fi">sci-fi</option>
           <option value="shooter">shooter</option>
@@ -129,7 +134,7 @@ class GamePage extends React.Component {
 
       <Container className='gameCards'>
 
-        {this.state.games.map((game) =>
+        {this.state.filteredGames.map((game) =>
           <Card key={game.id} style={{ width: '18rem' }}>
             <Card.Img variant="top" src={game.thumbnail} />
             <Card.Body>
