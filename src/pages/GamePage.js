@@ -16,7 +16,8 @@ class GamePage extends React.Component {
       errorMessage: '',
       selectedGenre: '',
       games: [],
-      filteredGames: []
+      filteredGames: [],
+      savedGames: {}
     }
   }
 
@@ -77,7 +78,7 @@ class GamePage extends React.Component {
         
 
         this.setState({
-          games: gameData.data,
+          savedGames: gameData.data,
           filteredGames: gameData.data,
           error: false
         });
@@ -90,24 +91,24 @@ class GamePage extends React.Component {
     }
   }
 
+  //** Allows users to filter games based off genres provided by Game API */
+  handleGenreSelected = (event) => {
+    let selectedGenre = event.target.value;
+    console.log(this.state.games);
+    let genreData = this.state.games.filter(g => g.genre.toLowerCase() === selectedGenre.toLowerCase());
+    console.log(genreData);
+    
+    this.setState({
+      filteredGames: genreData
+    })
+    
+  }
+  
   //** React Lifecycle to engage game load on page load after auth */
   componentDidMount() {
     this.handleGameLoad();
 
   }
-
-  handleGenreSelected = (event) => {
-    let selectedGenre = event.target.value;
-    console.log(this.state.games);
-      let genreData = this.state.games.filter(g => g.genre.toLowerCase() === selectedGenre.toLowerCase());
-      console.log(genreData);
-
-      this.setState({
-        filteredGames: genreData
-      })
-    
-  }
-
 
   render() {
 
@@ -180,14 +181,7 @@ class GamePage extends React.Component {
               <ListGroup variant="flush">
                 <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
               </ListGroup>
-              <Button onClick={()=>{this.handleSaveGame(
-                game.id,
-                game.title,
-                game.thumbnail,
-                game.short_description,
-                game.genre,
-                game.freetogame_profile_url
-                )}} variant="primary">SAVE</Button>
+              <Button onClick={()=>{this.handleSaveGame()}} variant="primary">SAVE</Button>
             </Card.Body>
           </Card>
         )}
