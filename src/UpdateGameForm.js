@@ -20,9 +20,7 @@ class UpdateGameForm extends React.Component {
 
   render() {
     return {
-      <>
-    {
-      this.props.game ?
+    { this.props.game ?
         <Modal show={this.props.show} onHide={this.props.onHide}>
 
           <Modal.Header closeButton><Modal.Title>game title</Modal.Title></Modal.Header>
@@ -51,8 +49,7 @@ class UpdateGameForm extends React.Component {
         </Modal>
         : null
     }
-      </>
-    };
+  };
 }
 
 export default UpdateGameForm;

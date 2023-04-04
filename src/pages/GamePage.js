@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
+import UserHome from './UserHome.js'
 import { Container } from 'react-bootstrap';
 import { withAuth0 } from '@auth0/auth0-react';
 
@@ -15,11 +16,14 @@ class GamePage extends React.Component {
       error: false,
       errorMessage: '',
       selectedGenre: '',
-      games: []
+      games: [],
+      filteredGames: [],
+      savedGames: {}
     }
   }
 
   // !! Auth0 way of building out handlers
+  //** Handles Game(s) Loading on GamePage on page Load */
   handleGameLoad = async (event) => {
     try {
       if (this.props.auth0.isAuthenticated) {
@@ -30,16 +34,18 @@ class GamePage extends React.Component {
 
         const config = {
           headers: { "Authorization": `Bearer ${jwt}` },
-          method: 'get',
+          method: 'get', //post when saving
           baseURL: process.env.REACT_APP_SERVER,
           url: '/games'
+          //data property that will be our game object to save
         }
         let gameData = await axios(config);
 
-        console.log(gameData.data);
+        
 
         this.setState({
           games: gameData.data,
+          filteredGames: gameData.data, // originally populates filteredGames with data to be manipulated with genre handler
           error: false
         });
       }
@@ -51,85 +57,122 @@ class GamePage extends React.Component {
     }
   }
 
+  //** Save game based off the click of SAVE button on card */
+  handleSaveGame = async (event) => {
+    try {
+      if (this.props.auth0.isAuthenticated) {
+        const response = await this.props.auth0.getIdTokenClaims();
+
+        const jwt = response.__raw;
+
+
+        const config = {
+          headers: { "Authorization": `Bearer ${jwt}` },
+          method: 'post', //post when saving
+          baseURL: process.env.REACT_APP_SERVER,
+          url: '/games',
+          data: this.state.savedGames
+          //data property will be our game object to save
+        }
+        let gameData = await axios(config);
+        let newGame = gameData.data;
+
+        this.setState({
+          savedGames: newGame,
+          error: false
+        });
+        
+        console.log(newGame);
+
+        console.log('Is the save button firing?');
+      }
+    } catch (error) {
+      this.setState({
+        error: true,
+        errorMessage: error.message
+      });
+    }
+  }
+
+  //** Allows users to filter games based off genres provided by Game API */
+  handleGenreSelected = (event) => {
+    
+    let selectedGenre = event.target.value;
+    console.log(this.state.games);
+    let genreData = this.state.games.filter(g => g.genre.toLowerCase() === selectedGenre.toLowerCase());
+    console.log(genreData);
+    
+    this.setState({
+      filteredGames: genreData
+    })
+    //TODO: Find a way to allow user to GO BACK to displaying all games with filter form
+  }
+  
+  //** React Lifecycle to engage game load on page load after auth */
   componentDidMount() {
     this.handleGameLoad();
 
   }
 
-  handleGenreSelected = (event) => {
-    let selectedGenre = event.target.value;
-    if (selectedGenre === '2d'){
-      let genreData = games.filter(g => g.genre === '2d')
-      this.setState({
-        games: genreData
-      })
-    }
-  }
-
-
-
-
   render() {
 
-    //TODO: RETURN GAMES AS CARDS WITH BUTTONS TO ALLOW USERS TO SAVE TO THEIR PROFILE AND MAKE A REVIEW.
-    // TODO: ALLOW A WAY FOR USER TO FILTER RESULTS BY PLATFORM OR CATEGORIES.
     return (
       <>
-      <Form onInput={this.submitHandler}>
+      <Form>
       <Form.Group >
         <Form.Select name='select' onChange={this.handleGenreSelected}>
           <option value="">View Games by Genre</option>
           <option value="2d">2d</option>
           <option value="3d">3d</option>
-          <option value="action">action</option>
-          <option value="action-rpg">action rpg</option>
-          <option value="anime">anime</option>
-          <option value="battle-royale">battle-royale</option>
-          <option value="card">card</option>
-          <option value="fantasy">fantasy</option>
-          <option value="fighting">fighting</option>
-          <option value="first-person">first-person</option>
-          <option value="flight">flight</option>
-          <option value="horror">horror</option>
-          <option value="low-spec">low-spec</option>
-          <option value="martial-arts">martial-arts</option>
-          <option value="military">military</option>
-          <option value="mmo">mmo</option>
-          <option value="mmofps">mmofps</option>
-          <option value="mmorpg">mmorpg</option>
-          <option value="mmorts">mmorts</option>
-          <option value="mmotps">mmotps</option>
-          <option value="moba">moba</option>
-          <option value="open-world">open-world</option>
-          <option value="permadeath">permadeath</option>
-          <option value="pixel">pixel</option>
-          <option value="pve">pve</option>
-          <option value="pvp">pvp</option>
-          <option value="racing">sports</option>
-          <option value="sailing"></option>
-          <option value="sandbox">sandbox</option>
-          <option value="sci-fi">sci-fi</option>
-          <option value="shooter">shooter</option>
-          <option value="side-scroller">side-scroller</option>
-          <option value="social">social</option>
-          <option value="space">space</option>
-          <option value="strategy">strategy</option>
-          <option value="superhero">superhero</option>
-          <option value="survival">survival</option>
-          <option value="tank">tank</option>
-          <option value="third-Person">third-Person</option>
-          <option value="top-down">top-down</option>
-          <option value="tower-defense">tower-defense</option>
-          <option value="turn-based">turn-based</option>
-          <option value="voxel">voxel</option>
-          <option value="zombies">zombies</option>
+          <option value="action">Action</option>
+          <option value="action-rpg">Action-rpg</option>
+          <option value="anime">Anime</option>
+          <option value="battle-royale">Battle-Royale</option>
+          <option value="card">Card</option>
+          <option value="fantasy">Fantasy</option>
+          <option value="fighting">Fighting</option>
+          <option value="first-person">First-Person</option>
+          <option value="flight">Flight</option>
+          <option value="horror">Horror</option>
+          <option value="low-spec">Low-Spec</option>
+          <option value="martial-arts">Martial-Arts</option>
+          <option value="military">Military</option>
+          <option value="mmo">MMO</option>
+          <option value="mmofps">MMOFPS</option>
+          <option value="mmorpg">MMORPG</option>
+          <option value="mmorts">MMORTS</option>
+          <option value="mmotps">MMOTPS</option>
+          <option value="moba">MOBA</option>
+          <option value="open-world">Open-World</option>
+          <option value="permadeath">Permadeath</option>
+          <option value="pixel">Pixel</option>
+          <option value="pve">PVE</option>
+          <option value="pvp">PVP</option>
+          <option value="racing">Sports</option>
+          <option value="sailing">Sailing</option>
+          <option value="sandbox">Sandbox</option>
+          <option value="sci-fi">Sci-fi</option>
+          <option value="shooter">Shooter</option>
+          <option value="side-scroller">Side-Scroller</option>
+          <option value="social">Social</option>
+          <option value="space">Space</option>
+          <option value="strategy">Strategy</option>
+          <option value="superhero">Superhero</option>
+          <option value="survival">Survival</option>
+          <option value="tank">Tank</option>
+          <option value="third-Person">Third-Person</option>
+          <option value="top-down">Top-down</option>
+          <option value="tower-defense">Tower-Defense</option>
+          <option value="turn-based">Turn-Based</option>
+          <option value="voxel">Voxel</option>
+          <option value="zombies">Zombies</option>
         </Form.Select>
       </Form.Group>
     </Form>
 
       <Container className='gameCards'>
 
-        {this.state.games.map((game) =>
+        {this.state.filteredGames.map((game) =>
           <Card key={game.id} style={{ width: '18rem' }}>
             <Card.Img variant="top" src={game.thumbnail} />
             <Card.Body>
@@ -142,13 +185,16 @@ class GamePage extends React.Component {
               <ListGroup variant="flush">
                 <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
               </ListGroup>
-              <Button variant="primary">SAVE</Button>
+              <Button onClick={()=>{ this.handleSaveGame(this.setState({savedGames: game}))}} variant="primary">SAVE</Button>
+              
             </Card.Body>
           </Card>
         )}
 
       </Container>
-
+          <UserHome 
+          savedGames={this.state.savedGames}
+          />
       </>
     );
   }
