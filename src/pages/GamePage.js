@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
+import UserHome from './UserHome.js'
 import { Container } from 'react-bootstrap';
 import { withAuth0 } from '@auth0/auth0-react';
 
@@ -44,7 +45,7 @@ class GamePage extends React.Component {
 
         this.setState({
           games: gameData.data,
-          filteredGames: gameData.data,
+          filteredGames: gameData.data, // originally populates filteredGames with data to be manipulated with genre handler
           error: false
         });
       }
@@ -70,18 +71,20 @@ class GamePage extends React.Component {
           method: 'post', //post when saving
           baseURL: process.env.REACT_APP_SERVER,
           url: '/games',
-          data: ''
+          data: this.state.savedGames
           //data property will be our game object to save
         }
         let gameData = await axios(config);
-
-        
+        let newGame = gameData.data;
 
         this.setState({
-          savedGames: gameData.data,
-          filteredGames: gameData.data,
+          savedGames: newGame,
           error: false
         });
+        
+        console.log(newGame);
+
+        console.log('Is the save button firing?');
       }
     } catch (error) {
       this.setState({
@@ -93,6 +96,7 @@ class GamePage extends React.Component {
 
   //** Allows users to filter games based off genres provided by Game API */
   handleGenreSelected = (event) => {
+    
     let selectedGenre = event.target.value;
     console.log(this.state.games);
     let genreData = this.state.games.filter(g => g.genre.toLowerCase() === selectedGenre.toLowerCase());
@@ -101,7 +105,7 @@ class GamePage extends React.Component {
     this.setState({
       filteredGames: genreData
     })
-    
+    //TODO: Find a way to allow user to GO BACK to displaying all games with filter form
   }
   
   //** React Lifecycle to engage game load on page load after auth */
@@ -181,13 +185,16 @@ class GamePage extends React.Component {
               <ListGroup variant="flush">
                 <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
               </ListGroup>
-              <Button onClick={()=>{this.handleSaveGame()}} variant="primary">SAVE</Button>
+              <Button onClick={()=>{ this.handleSaveGame(this.setState({savedGames: game}))}} variant="primary">SAVE</Button>
+              
             </Card.Body>
           </Card>
         )}
 
       </Container>
-
+          <UserHome 
+          savedGames={this.state.savedGames}
+          />
       </>
     );
   }
