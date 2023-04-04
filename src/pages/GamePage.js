@@ -58,7 +58,12 @@ class GamePage extends React.Component {
 
   handleGenreSelected = (event) => {
     let selectedGenre = event.target.value;
-
+    if (selectedGenre === '2d'){
+      let genreData = games.filter(g => g.genre === '2d')
+      this.setState({
+        games: genreData
+      })
+    }
   }
 
 
