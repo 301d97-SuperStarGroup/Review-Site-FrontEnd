@@ -41,11 +41,11 @@ class UpdateGameForm extends React.Component {
               </Form.Group>
 
               <Form.Group controlId="reviewNotes">
-                <Form.Label>Review/Notes</Form.Label>
+                <Form.Label>Game Review/Notes</Form.Label>
                 <Form.Control type="text" defaultValue={this.props.reviewNotes} />
               </Form.Group>
 
-              <Button type="submit">Update Game</Button>
+              <Button type="submit">Update Game Notes</Button>
             </Form>
           </Container>
         </Modal>
@@ -54,6 +54,5 @@ class UpdateGameForm extends React.Component {
       </>
     };
 }
-}
 
-export default UpdateGameForm
+export default UpdateGameForm;

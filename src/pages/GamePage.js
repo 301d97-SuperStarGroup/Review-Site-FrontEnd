@@ -4,6 +4,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Form from 'react-bootstrap/Form';
 import { Container } from 'react-bootstrap';
 import { withAuth0 } from '@auth0/auth0-react';
 
@@ -13,6 +14,7 @@ class GamePage extends React.Component {
     this.state = {
       error: false,
       errorMessage: '',
+      selectedGenre: '',
       games: []
     }
   }
@@ -54,11 +56,71 @@ class GamePage extends React.Component {
 
   }
 
+  handleGenreSelected = (event) => {
+    let selectedGenre = event.target.value;
+
+  }
+
+
+
+
   render() {
 
     //TODO: RETURN GAMES AS CARDS WITH BUTTONS TO ALLOW USERS TO SAVE TO THEIR PROFILE AND MAKE A REVIEW.
     // TODO: ALLOW A WAY FOR USER TO FILTER RESULTS BY PLATFORM OR CATEGORIES.
     return (
+      <>
+      <Form onInput={this.submitHandler}>
+      <Form.Group >
+        <Form.Select name='select' onChange={this.handleGenreSelected}>
+          <option value="">View Games by Genre</option>
+          <option value="2d">2d</option>
+          <option value="3d">3d</option>
+          <option value="action">action</option>
+          <option value="action-rpg">action rpg</option>
+          <option value="anime">anime</option>
+          <option value="battle-royale">battle-royale</option>
+          <option value="card">card</option>
+          <option value="fantasy">fantasy</option>
+          <option value="fighting">fighting</option>
+          <option value="first-person">first-person</option>
+          <option value="flight">flight</option>
+          <option value="horror">horror</option>
+          <option value="low-spec">low-spec</option>
+          <option value="martial-arts">martial-arts</option>
+          <option value="military">military</option>
+          <option value="mmo">mmo</option>
+          <option value="mmofps">mmofps</option>
+          <option value="mmorpg">mmorpg</option>
+          <option value="mmorts">mmorts</option>
+          <option value="mmotps">mmotps</option>
+          <option value="moba">moba</option>
+          <option value="open-world">open-world</option>
+          <option value="permadeath">permadeath</option>
+          <option value="pixel">pixel</option>
+          <option value="pve">pve</option>
+          <option value="pvp">pvp</option>
+          <option value="racing">sports</option>
+          <option value="sailing"></option>
+          <option value="sandbox">sandbox</option>
+          <option value="sci-fi">sci-fi</option>
+          <option value="shooter">shooter</option>
+          <option value="side-scroller">side-scroller</option>
+          <option value="social">social</option>
+          <option value="space">space</option>
+          <option value="strategy">strategy</option>
+          <option value="superhero">superhero</option>
+          <option value="survival">survival</option>
+          <option value="tank">tank</option>
+          <option value="third-Person">third-Person</option>
+          <option value="top-down">top-down</option>
+          <option value="tower-defense">tower-defense</option>
+          <option value="turn-based">turn-based</option>
+          <option value="voxel">voxel</option>
+          <option value="zombies">zombies</option>
+        </Form.Select>
+      </Form.Group>
+    </Form>
 
       <Container className='gameCards'>
 
@@ -82,7 +144,7 @@ class GamePage extends React.Component {
 
       </Container>
 
-
+      </>
     );
   }
 }

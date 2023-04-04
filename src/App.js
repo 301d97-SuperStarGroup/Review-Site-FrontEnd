@@ -9,7 +9,6 @@ import UserProfile from './UserProfile.js';
 import LoginButton from './LoginButton.js';
 import LogoutButton from './LogoutButton.js'
 import { withAuth0 } from '@auth0/auth0-react';
-
 import {
   BrowserRouter as Router,
   Routes,
