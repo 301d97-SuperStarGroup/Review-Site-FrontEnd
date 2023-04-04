@@ -21,6 +21,7 @@ class GamePage extends React.Component {
   }
 
   // !! Auth0 way of building out handlers
+  //** Handles Game(s) Loading on GamePage on page Load */
   handleGameLoad = async (event) => {
     try {
       if (this.props.auth0.isAuthenticated) {
@@ -38,7 +39,7 @@ class GamePage extends React.Component {
         }
         let gameData = await axios(config);
 
-        console.log(gameData.data);
+        
 
         this.setState({
           games: gameData.data,
@@ -54,6 +55,42 @@ class GamePage extends React.Component {
     }
   }
 
+  //** Save game based off the click of SAVE button on card */
+  handleSaveGame = async (event) => {
+    try {
+      if (this.props.auth0.isAuthenticated) {
+        const response = await this.props.auth0.getIdTokenClaims();
+
+        const jwt = response.__raw;
+
+
+        const config = {
+          headers: { "Authorization": `Bearer ${jwt}` },
+          method: 'post', //post when saving
+          baseURL: process.env.REACT_APP_SERVER,
+          url: '/games',
+          data: ''
+          //data property will be our game object to save
+        }
+        let gameData = await axios(config);
+
+        
+
+        this.setState({
+          games: gameData.data,
+          filteredGames: gameData.data,
+          error: false
+        });
+      }
+    } catch (error) {
+      this.setState({
+        error: true,
+        errorMessage: error.message
+      });
+    }
+  }
+
+  //** React Lifecycle to engage game load on page load after auth */
   componentDidMount() {
     this.handleGameLoad();
 
@@ -70,8 +107,6 @@ class GamePage extends React.Component {
       })
     
   }
-
-
 
 
   render() {
@@ -145,7 +180,14 @@ class GamePage extends React.Component {
               <ListGroup variant="flush">
                 <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
               </ListGroup>
-              <Button variant="primary">SAVE</Button>
+              <Button onClick={()=>{this.handleSaveGame(
+                game.id,
+                game.title,
+                game.thumbnail,
+                game.short_description,
+                game.genre,
+                game.freetogame_profile_url
+                )}} variant="primary">SAVE</Button>
             </Card.Body>
           </Card>
         )}
