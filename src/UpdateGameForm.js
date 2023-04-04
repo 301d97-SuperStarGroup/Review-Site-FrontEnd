@@ -21,20 +21,39 @@ class UpdateGameForm extends React.Component {
   render() {
     return {
       <>
-      { this.props.game ?
-      <Modal show={this.props.show} onHide={this.props.onHide}>
-        
-        <Modal.Header closeButton><Modal.Title>game title</Modal.Title></Modal.Header>
+    {
+      this.props.game ?
+        <Modal show={this.props.show} onHide={this.props.onHide}>
 
-      <Container className="mt-5">
-        <Form onSubmit={this.handleGameSubmit}>
-          <Form.Group controlID="title">
-            <Form.Label>Game Title</Form.Label>
-            <Form.Control type="text" defaultValue={this.props.book.title}/>
-            </Form.Group>
-          <Form.Group controlId="description">
-            <Form.Label>Description</Form.Label>
-            <Form.Control type"text" defaultValue={}
+          <Modal.Header closeButton><Modal.Title>game title</Modal.Title></Modal.Header>
+
+          <Container className="mt-5">
+
+            <Form onSubmit={this.handleGameSubmit}>
+              <Form.Group controlID="title">
+                <Form.Label>Game Title</Form.Label>
+                <Form.Control type="text" defaultValue={this.props.game.title} />
+              </Form.Group>
+
+              <Form.Group controlId="playStatus">
+                <Form.Label>Play Status</Form.Label>
+                <Form.Control type="checkbox" defaultValue={this.props.game.playStatus} />
+              </Form.Group>
+
+              <Form.Group controlId="reviewNotes">
+                <Form.Label>Review/Notes</Form.Label>
+                <Form.Control type="text" defaultValue={this.props.reviewNotes} />
+              </Form.Group>
+
+              <Button type="submit">Update Game</Button>
+            </Form>
+          </Container>
+        </Modal>
+        : null
     }
-  }
+      </>
+    };
 }
+}
+
+export default UpdateGameForm
