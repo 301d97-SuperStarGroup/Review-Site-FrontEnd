@@ -8,10 +8,10 @@ class UpdateGameForm extends React.Component {
 
     let gameToUpdate = {
       title: event.target.title.value,
-      description: event.target.description.value,
-      status: event.target.status.checked,
-      _id: this.props.book._id,
-      _v: this.props.book._v
+      play_status: event.target.play_status.value,
+      reviewNotes: event.target.reviewNotes.value,
+      _id: this.props.game._id,
+      _v: this.props.game._v
     }
     console.log(gameToUpdate);
     // Handler from GamePage.js to update database
