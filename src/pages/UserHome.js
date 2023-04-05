@@ -1,9 +1,10 @@
 import React from "react";
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
+// import Form from 'react-bootstrap';
+// import Modal from 'react-bootstrap';
 
-import { Container, Form, Modal } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 
