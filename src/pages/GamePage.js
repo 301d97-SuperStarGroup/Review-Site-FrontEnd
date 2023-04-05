@@ -58,7 +58,7 @@ class GamePage extends React.Component {
   }
 
   //** Save game based off the click of SAVE button on card */
-  handleSaveGame = async (event) => {
+  handleSaveGame = async (gameObj) => {
     try {
       if (this.props.auth0.isAuthenticated) {
         const response = await this.props.auth0.getIdTokenClaims();
@@ -71,18 +71,18 @@ class GamePage extends React.Component {
           method: 'post', //post when saving
           baseURL: process.env.REACT_APP_SERVER,
           url: '/games',
-          data: this.state.savedGames
+          data: gameObj
           //data property will be our game object to save
         }
         let gameData = await axios(config);
-        let newGame = gameData.data;
+        
 
         this.setState({
-          savedGames: newGame,
+      
           error: false
         });
         
-        console.log(newGame);
+        console.log(gameData.data);
 
         console.log('Is the save button firing?');
       }
@@ -185,7 +185,7 @@ class GamePage extends React.Component {
               <ListGroup variant="flush">
                 <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
               </ListGroup>
-              <Button onClick={()=>{ this.handleSaveGame(this.setState({savedGames: game}))}} variant="primary">SAVE</Button>
+              <Button onClick={()=>{ this.handleSaveGame(game)}} variant="primary">SAVE</Button>
               
             </Card.Body>
           </Card>
