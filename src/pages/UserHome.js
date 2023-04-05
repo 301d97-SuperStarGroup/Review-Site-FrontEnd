@@ -2,19 +2,20 @@ import React from "react";
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import { Container } from 'react-bootstrap';
-// import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 class UserHome extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       userGames: [],
       error: false,
       errorMessage: ''
     }
   }
 
+  //** Retrieves User's saved game from MongoDB */
   getUserGames = async () => {
     try {
       if (this.props.auth0.isAuthenticated) {
@@ -25,14 +26,13 @@ class UserHome extends React.Component {
 
         const config = {
           headers: { "Authorization": `Bearer ${jwt}` },
-          method: 'get', //post when saving
+          method: 'get', 
           baseURL: process.env.REACT_APP_SERVER,
           url: '/myGames'
-          //data property that will be our game object to save
         }
         let gameData = await axios(config);
 
-        
+
 
         this.setState({
           userGames: gameData.data,
@@ -48,24 +48,38 @@ class UserHome extends React.Component {
     }
   }
 
-  //!! LAURENCE WORK ON DELETE FUNCTIONALITY FOR SAVED GAMES
-  // deleteGame = async (id) => {
-  //     try{
+  deleteGame = async (id) => {
+    try {
+      if (this.props.auth0.isAuthenticated) {
+        const response = await this.props.auth0.getIdTokenClaims();
 
-  //         let url = `${process.env.REACT_APP_SERVER}/games/${id}`
+        const jwt = response.__raw;
 
-  //         await axios.delete(url);
 
-  //         let updatedGames = this.state.games.filter(game => game._id !== id);
+        const config = {
+          headers: { "Authorization": `Bearer ${jwt}` },
+          method: 'delete',
+          baseURL: process.env.REACT_APP_SERVER,
+          url: `/games${id}`
 
-  //         this.setState({
-  //             games: updatedGames
-  //         })
-  //     } catch (error) {
-  //         console.log(error.response)
-  //     }
-  // }
-  
+        }
+        let gameData = await axios(config);
+
+        console.log('Is the delete firing?')
+
+        this.setState({
+          userGames: gameData.data,
+          error: false
+        });
+      }
+    } catch (error) {
+      this.setState({
+        error: true,
+        errorMessage: error.message
+      });
+    }
+  }
+  //** React lifecycle to pull user game to home page on load */
   componentDidMount() {
     this.getUserGames();
 
@@ -74,27 +88,27 @@ class UserHome extends React.Component {
   render() {
     return (
       <>
-        {/* MAP OVER GAME OBJECT SAVED DATA TO GENERATE CARDS OF GAME INFORMATION */}
         <Container className='gameCards'>
 
-        {this.state.userGames.map((game) =>
-          <Card key={game._id} style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={game.thumbnail} />
-            <Card.Body>
-              <Card.Title>{game.title}</Card.Title>
-              <Card.Text>
-                {game.short_description}
-              </Card.Text>
-              <Card.Link href={game.freetogame_profile_url}>Game Link</Card.Link>
-              <ListGroup variant="flush">
-                <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
-              </ListGroup>
-              {/* <Button variant="danger" onClick = {() => { this.deleteGame(game._id) }}>Delete Game</Button> */}
-            </Card.Body>
-          </Card>
-         )}
+          {this.state.userGames.map((game) =>
+            <Card key={game._id} style={{ width: '18rem' }}>
+              <Card.Img variant="top" src={game.thumbnail} />
+              <Card.Body>
+                <Card.Title>{game.title}</Card.Title>
+                <Card.Text>
+                  {game.short_description}
+                </Card.Text>
+                <Card.Link style={{display: 'flex', justifyContent: 'center'}} href={game.freetogame_profile_url}>Game Link</Card.Link>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
+                </ListGroup>
+                <Button variant="info">Write a Review</Button>
+                <Button  variant="danger" onClick = {() => { this.deleteGame(game._id) }}>Delete Game</Button>
+              </Card.Body>
+            </Card>
+          )}
 
-         </Container>
+        </Container>
       </>
     )
   }
