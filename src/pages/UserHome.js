@@ -1,9 +1,12 @@
 import React from "react";
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
-// import { Container, Form, Modal } from 'react-bootstrap';
-import { Container } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
+
+// import Form from 'react-bootstrap';
+// import Modal from 'react-bootstrap';
+
+import Container from 'react-bootstrap/Container';
+
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import UpdateGameReview from "./UpdateGameReview";
@@ -68,7 +71,10 @@ class UserHome extends React.Component {
       });
     }
   }
+
+
 //** Delete a user saved game via button */
+
   deleteGame = async (id) => {
     try {
       if (this.props.auth0.isAuthenticated) {
@@ -85,6 +91,7 @@ class UserHome extends React.Component {
 
         }
         await axios(config);
+
         let updatedGames = this.state.userGames.filter(game => game._id !== id); // added
 
         console.log('Is the delete firing?')
@@ -190,10 +197,10 @@ class UserHome extends React.Component {
                 <ListGroup variant="flush">
                   <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
                 </ListGroup>
-                {/* <Button  variant="info" onClick = {() => { this.updateGame(game._id) }}>Write A Review</Button> */}
-                { this.state.showModal ? <UpdateGameReview userGames={this.state.userGames} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit}/> :<Button  variant="info" onClick = { this.handleOpenModal } >Write A Review</Button> }
-                <Button  variant="danger" onClick = {() => { this.deleteGame(game._id) }}>Delete Game</Button>
-                {/* <Button onClick={() => { this.setState({showForm: true, gameToUpdate: game}) }}>Open Update Form</Button> */}
+                <button class="nes-btn is-primary" style={{display: 'flex', flexWrap: 'wrap',padding: ''}} onClick = {() => { this.updateGame(game._id) }}>Write a Review</button>
+                <button   class="nes-btn is-error" style={{display: 'flex', flexWrap: 'wrap'}} onClick = {() => { this.deleteGame(game._id) }}>Delete Game</button>
+                 {/* <Button onClick={() => { this.setState({showForm: true, gameToUpdate: game}) }}>Open Update Form</Button> */}
+
               </Card.Body>
             </Card>
 

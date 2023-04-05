@@ -1,4 +1,5 @@
 import React from 'react';
+import "nes.css/css/nes.min.css";
 import './App.css';
 import Header from './Header';
 import Footer from './Footer.js';
@@ -73,6 +74,7 @@ class App extends React.Component {
             </>
             :
             <LoginButton />
+            
         }
       </>
 
