@@ -4,7 +4,7 @@ import axios from 'axios';
 // import Form from 'react-bootstrap';
 // import Modal from 'react-bootstrap';
 
-import Container from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 
