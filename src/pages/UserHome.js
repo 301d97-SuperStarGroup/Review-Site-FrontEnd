@@ -2,7 +2,6 @@ import React from "react";
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import { Container } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 class UserHome extends React.Component {
