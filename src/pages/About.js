@@ -25,7 +25,7 @@ class About extends React.Component {
         </Card>
 
         <Card style={{ width: '25rem' }}>
-          <Card.Img variant="top" src={laurence} />
+          <Card.Img variant="top" src={laurence} alt='Laurence Profile Pic' />
           <Card.Body>
             <Card.Title>Laurence Vinzen</Card.Title>
             <Card.Text>
@@ -39,7 +39,7 @@ class About extends React.Component {
         </Card>
 
         <Card style={{ width: '25rem' }}>
-          <Card.Img variant="top" src={reece} />
+          <Card.Img variant="top" src={reece} alt='reece profile pic'/>
           <Card.Body>
             <Card.Title>Reece Renninger</Card.Title>
             <Card.Text>
@@ -52,7 +52,7 @@ class About extends React.Component {
         </Card>
 
         <Card style={{ width: '25rem' }}>
-          <Card.Img variant="top" src={sarah} />
+          <Card.Img variant="top" src={sarah} alt='sarah profile pic'/>
           <Card.Body>
             <Card.Title>Sarah Glass</Card.Title>
             <Card.Text>

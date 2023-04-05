@@ -1,12 +1,15 @@
 import React from "react";
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
+
 // import Form from 'react-bootstrap';
 // import Modal from 'react-bootstrap';
 
 import Container from 'react-bootstrap/Container';
+
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import UpdateGameReview from "./UpdateGameReview";
 
 class UserHome extends React.Component {
   constructor(props) {
@@ -118,6 +121,7 @@ class UserHome extends React.Component {
     }
     console.log(gameToUpdate);
     this.props.updateGame(gameToUpdate);
+    this.handleCloseModal();
   }
 
   // handleGameSubmit = (event) => { // taken from BestBooks.js, which had the BestBooks class, same handler name called handleBookSubmit, and handler varible "bookObj"
@@ -168,12 +172,6 @@ class UserHome extends React.Component {
     }
   }
 
-  closeModal = () => {
-    this.setState({
-      showForm: false
-    })
-  }
-
 
   //** React lifecycle to pull user game to home page on load */
   componentDidMount() {
@@ -182,13 +180,14 @@ class UserHome extends React.Component {
   }
 
   render() {
+    console.log(this.state.userGames);
     return (
       <>
         <Container className='gameCards'>
 
           {this.state.userGames.map((game) =>
-            <Card key={game._id} style={{ width: '20rem' }}>
-              <Card.Img variant="top" src={game.thumbnail} />
+            <Card key={game._id} style={{ width: '18rem' }}>
+              <Card.Img variant="top" src={game.thumbnail} alt={game.short_description}/>
               <Card.Body>
                 <Card.Title>{game.title}</Card.Title>
                 <Card.Text>
@@ -198,56 +197,16 @@ class UserHome extends React.Component {
                 <ListGroup variant="flush">
                   <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
                 </ListGroup>
-
                 <button class="nes-btn is-primary" style={{display: 'flex', flexWrap: 'wrap',padding: ''}} onClick = {() => { this.updateGame(game._id) }}>Write a Review</button>
                 <button   class="nes-btn is-error" style={{display: 'flex', flexWrap: 'wrap'}} onClick = {() => { this.deleteGame(game._id) }}>Delete Game</button>
                  {/* <Button onClick={() => { this.setState({showForm: true, gameToUpdate: game}) }}>Open Update Form</Button> */}
-            
-              
-               
 
               </Card.Body>
             </Card>
+
           )}
 
         </Container>
-
-
-{/* render() {
-  return {
-  { this.props.game ?
-      <Modal show={this.props.show} onHide={this.props.onHide}>
-
-        <Modal.Header closeButton><Modal.Title>game title</Modal.Title></Modal.Header>
-
-        <Container className="mt-5">
-
-          <Form onSubmit={this.handleGameSubmit}>
-            <Form.Group controlID="title" className="mb-3" disabled>
-              <Form.Label>Game Title</Form.Label>
-              <Form.Control id="disabledTextInput" placeholder="Disabled input"type="text" defaultValue={this.props.game.title} />
-            </Form.Group>
-
-            <Form.Group controlId="playStatus">
-              <Form.Label>Play Status</Form.Label>
-              <Form.Control type="checkbox" defaultValue={this.props.game.playStatus} />
-            </Form.Group>
-
-            <Form.Group controlId="reviewNotes">
-              <Form.Label>Game Review/Notes</Form.Label>
-              <Form.Control type="text" defaultValue={this.props.reviewNotes} />
-            </Form.Group>
-
-            <Button type="submit">Update Game Notes</Button>
-          </Form>
-        </Container>
-      </Modal>
-      : null
-  }
-};
-} */}
-
-
         
       </>
     )
