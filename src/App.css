@@ -1,3 +1,8 @@
+body{
+  background: rgb(17,106,12);
+  background: linear-gradient(0deg, rgba(17,106,12,1) 19%, rgba(9,22,121,1) 47%, rgba(147,0,255,1) 80%); 
+}
+
 /** Header Nav Bar Links */
 .nav-link{
   color:white !important;
@@ -18,4 +23,15 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding: 5px;
+}
+
+/** genre in game cards */
+.list-group-item{
+text-align: center;
+}
+/** game card links*/
+.card-link{
+  display: flex;
+  justify-content: center;
 }
