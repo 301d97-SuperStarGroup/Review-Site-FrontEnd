@@ -64,10 +64,11 @@ class UserHome extends React.Component {
 
         }
         await axios(config);
-
+        let updatedGames = this.state.userGames.filter(game => game._id !== id);
         console.log('Is the delete firing?')
 
         this.setState({
+          userGames: updatedGames,
           error: false
         });
       }
