@@ -138,5 +138,20 @@ text-align: center;
   width: fit-content !important;
   display: block !important;
   margin: auto !important;
+
   font-family: 'Press Start 2P', cursive;
+
+}
+
+#githublogo {
+  width: 25px;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+#linkedlogo {
+  width: 25px;
+  display: inline-block;
+  margin: 0 auto;
+
 }
