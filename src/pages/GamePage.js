@@ -185,7 +185,7 @@ class GamePage extends React.Component {
               <ListGroup variant="flush">
                 <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
               </ListGroup>
-              <Button onClick={()=>{ this.handleSaveGame(game)}} variant="primary">SAVE</Button>
+              <Button style={{display: 'block', margin: 'auto'}} onClick={()=>{ this.handleSaveGame(game)}} variant="success">SAVE</Button>
               
             </Card.Body>
           </Card>

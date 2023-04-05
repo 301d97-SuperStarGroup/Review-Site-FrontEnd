@@ -35,3 +35,14 @@ text-align: center;
   display: flex;
   justify-content: center;
 }
+/** game card buttons*/
+/** GAME CARD BUTTON STYLING IS BEING DONE INLINE FOR POSITIONING*/
+.btn-primary{
+
+}
+
+.form-select{
+  width: fit-content !important;
+  display: block !important;
+  margin: auto !important;
+}
