@@ -3,14 +3,40 @@ body{
   background: linear-gradient(0deg, rgba(17,106,12,1) 19%, rgba(9,22,121,1) 47%, rgba(147,0,255,1) 80%); 
   font-family: 'Press Start 2P', cursive;
 }
+
 h2{
   font-family: 'Press Start 2P', cursive;
+  text-align: center;
 }
+
 p{
   font-family: 'Press Start 2P', cursive;
+  text-align: center;
 }
-.logButtons{
+
+.userPicture{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/** Card title for about us*/
+.h5{
+  text-decoration: underline;
+}
+
+/** Login and out buttons */
+.loginButton{
   font-family: 'Press Start 2P', cursive;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logoutButton{
+  font-family: 'Press Start 2P', cursive;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 /** Header Nav Bar Links */
 .nav-link{
@@ -103,4 +129,5 @@ text-align: center;
   width: fit-content !important;
   display: block !important;
   margin: auto !important;
+  font-family: 'Press Start 2P', cursive;
 }

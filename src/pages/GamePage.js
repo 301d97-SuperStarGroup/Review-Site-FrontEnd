@@ -173,7 +173,7 @@ class GamePage extends React.Component {
       <Container className='gameCards'>
 
         {this.state.filteredGames.map((game) =>
-          <Card key={game.id} style={{ width: '18rem' }}>
+          <Card key={game.id} style={{ width: '20rem' }}>
             <Card.Img variant="top" src={game.thumbnail} />
             <Card.Body>
               <Card.Title>{game.title}</Card.Title>
