@@ -32,8 +32,8 @@ class About extends React.Component {
               test
             </Card.Text>
 
-            <Card.Link href="https://github.com/teamidol">GitHub</Card.Link>
-            <Card.Link href="https://www.linkedin.com/in/teamidol/">LinkedIn</Card.Link>
+            <Card.Link href="https://github.com/teamidol"><img id='githublogo' src={githubLogo} alt='Github'/></Card.Link>
+            <Card.Link href="https://www.linkedin.com/in/teamidol/"><img id='linkedlogo' src={linkedLogo} alt='linkedIn'/></Card.Link>
 
           </Card.Body>
         </Card>
