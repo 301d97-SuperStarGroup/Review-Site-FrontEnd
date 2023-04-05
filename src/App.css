@@ -91,3 +91,15 @@ text-align: center;
   display: block !important;
   margin: auto !important;
 }
+
+#githublogo {
+  width: 25px;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+#linkedlogo {
+  width: 25px;
+  display: inline-block;
+  margin: 0 auto;
+}

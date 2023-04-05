@@ -4,6 +4,8 @@ import dajon from '../img/dajon.jpg'
 import laurence from '../img/Laurence-picture.jpg'
 import reece from '../img/Reece-Alpaca.jpg'
 import sarah from '../img/Sarah-headshot.jpg'
+import githubLogo from '../img/github-mark.png'
+import linkedLogo from '../img/linkedin.png'
 
 class About extends React.Component {
   render() {
@@ -17,8 +19,8 @@ class About extends React.Component {
             <Card.Text>
             I am a student software developer and US Navy veteran residing in Port Orchard, Wa with a background in Logistical Operations and Inventory Management. I am dedicated to making a difference in the constantly evolving tech industry through software development.
             </Card.Text>
-            <Card.Link href="https://github.com/nojadzworld">GitHub</Card.Link>
-            <Card.Link href="https://www.linkedin.com/in/dajon-e/">LinkedIn</Card.Link>
+            <Card.Link  href="https://github.com/nojadzworld"><img id='githublogo' src={githubLogo} alt='Github'/></Card.Link>
+            <Card.Link href="https://www.linkedin.com/in/dajon-e/"><img id='linkedlogo' src={linkedLogo} alt='linkedIn'/></Card.Link>
           </Card.Body>
         </Card>
 
@@ -29,8 +31,10 @@ class About extends React.Component {
             <Card.Text>
               test
             </Card.Text>
+
             <Card.Link href="https://github.com/teamidol">GitHub</Card.Link>
             <Card.Link href="https://www.linkedin.com/in/teamidol/">LinkedIn</Card.Link>
+
           </Card.Body>
         </Card>
 
@@ -41,8 +45,8 @@ class About extends React.Component {
             <Card.Text>
               Reece is going to be probably become a backend dev because he has no styling capabilities and the front end hates him.
             </Card.Text>
-            <Card.Link href="https://github.com/ReeceRenninger">GitHub</Card.Link>
-            <Card.Link href="https://www.linkedin.com/in/reecerenninger/">LinkedIn</Card.Link>
+            <Card.Link href="https://github.com/ReeceRenninger"><img id='githublogo' src={githubLogo} alt='Github'/></Card.Link>
+            <Card.Link href="https://www.linkedin.com/in/reecerenninger/"><img id='linkedlogo' src={linkedLogo} alt='linkedIn'/></Card.Link>
           </Card.Body>
         </Card>
 
@@ -53,8 +57,8 @@ class About extends React.Component {
             <Card.Text>
               test
             </Card.Text>
-            <Card.Link href="https://github.com/s-glass">GitHub</Card.Link>
-            <Card.Link href="https://www.linkedin.com/in/sarah-codes/">LinkedIn</Card.Link>
+            <Card.Link href="https://github.com/s-glass"><img id='githublogo' src={githubLogo} alt='Github'/></Card.Link>
+            <Card.Link href="https://www.linkedin.com/in/sarah-codes/"><img id='linkedlogo' src={linkedLogo} alt='linkedIn'/></Card.Link>
           </Card.Body>
         </Card>
 
