@@ -79,7 +79,7 @@ class UserHome extends React.Component {
       });
     }
   }
-
+  //** React lifecycle to pull user game to home page on load */
   componentDidMount() {
     this.getUserGames();
 
@@ -98,11 +98,12 @@ class UserHome extends React.Component {
                 <Card.Text>
                   {game.short_description}
                 </Card.Text>
-                <Card.Link href={game.freetogame_profile_url}>Game Link</Card.Link>
+                <Card.Link style={{display: 'flex', justifyContent: 'center'}} href={game.freetogame_profile_url}>Game Link</Card.Link>
                 <ListGroup variant="flush">
                   <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
                 </ListGroup>
-                <Button variant="danger" onClick = {() => { this.deleteGame(game._id) }}>Delete Game</Button>
+                <Button variant="info">Write a Review</Button>
+                <Button  variant="danger" onClick = {() => { this.deleteGame(game._id) }}>Delete Game</Button>
               </Card.Body>
             </Card>
           )}
