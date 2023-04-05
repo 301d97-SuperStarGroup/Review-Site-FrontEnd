@@ -1,6 +1,7 @@
 import React from "react";
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
+
 import { Container, Form, Modal } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -66,7 +67,10 @@ class UserHome extends React.Component {
       });
     }
   }
+
+
 //** Delete a user saved game via button */
+
   deleteGame = async (id) => {
     try {
       if (this.props.auth0.isAuthenticated) {
@@ -83,6 +87,7 @@ class UserHome extends React.Component {
 
         }
         await axios(config);
+
         let updatedGames = this.state.userGames.filter(game => game._id !== id); // added
 
         console.log('Is the delete firing?')
@@ -181,7 +186,7 @@ class UserHome extends React.Component {
         <Container className='gameCards'>
 
           {this.state.userGames.map((game) =>
-            <Card key={game._id} style={{ width: '18rem' }}>
+            <Card key={game._id} style={{ width: '20rem' }}>
               <Card.Img variant="top" src={game.thumbnail} />
               <Card.Body>
                 <Card.Title>{game.title}</Card.Title>
@@ -192,9 +197,14 @@ class UserHome extends React.Component {
                 <ListGroup variant="flush">
                   <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
                 </ListGroup>
-                <Button  variant="info" onClick = {() => { this.updateGame(game._id) }}>Write A Review</Button>
-                <Button  variant="danger" onClick = {() => { this.deleteGame(game._id) }}>Delete Game</Button>
-                {/* <Button onClick={() => { this.setState({showForm: true, gameToUpdate: game}) }}>Open Update Form</Button> */}
+
+                <button class="nes-btn is-primary" style={{display: 'flex', flexWrap: 'wrap',padding: ''}} onClick = {() => { this.updateGame(game._id) }}>Write a Review</button>
+                <button   class="nes-btn is-error" style={{display: 'flex', flexWrap: 'wrap'}} onClick = {() => { this.deleteGame(game._id) }}>Delete Game</button>
+                 {/* <Button onClick={() => { this.setState({showForm: true, gameToUpdate: game}) }}>Open Update Form</Button> */}
+            
+              
+               
+
               </Card.Body>
             </Card>
           )}

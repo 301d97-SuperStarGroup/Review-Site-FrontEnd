@@ -1,7 +1,6 @@
 
 import axios from 'axios';
 import React from 'react';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
@@ -30,7 +29,7 @@ class GamePage extends React.Component {
         const response = await this.props.auth0.getIdTokenClaims();
 
         const jwt = response.__raw;
-
+        console.log(jwt);
 
         const config = {
           headers: { "Authorization": `Bearer ${jwt}` },
@@ -173,7 +172,7 @@ class GamePage extends React.Component {
       <Container className='gameCards'>
 
         {this.state.filteredGames.map((game) =>
-          <Card key={game.id} style={{ width: '18rem' }}>
+          <Card key={game.id} style={{ width: '20rem' }}>
             <Card.Img variant="top" src={game.thumbnail} />
             <Card.Body>
               <Card.Title>{game.title}</Card.Title>
@@ -185,7 +184,12 @@ class GamePage extends React.Component {
               <ListGroup variant="flush">
                 <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
               </ListGroup>
+
+              <button style={{display: 'block', margin: 'auto'}} onClick={()=>{ this.handleSaveGame(game)}} class="nes-btn is-success">SAVE</button>
+              
+
               <Button style={{display: 'block', margin: 'auto'}} onClick={()=>{ this.handleSaveGame(game)}} variant="success">SAVE</Button>
+
 
             </Card.Body>
           </Card>
