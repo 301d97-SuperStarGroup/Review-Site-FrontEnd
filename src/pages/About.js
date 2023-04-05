@@ -19,8 +19,8 @@ class About extends React.Component {
             <Card.Text>
             I am a student software developer and US Navy veteran residing in Port Orchard, Wa with a background in Logistical Operations and Inventory Management. I am dedicated to making a difference in the constantly evolving tech industry through software development.
             </Card.Text>
-            <Card.Link  href="https://github.com/nojadzworld"><img id='githublogo' src={githubLogo} alt='Github'/></Card.Link>
-            <Card.Link href="https://www.linkedin.com/in/dajon-e/"><img id='linkedlogo' src={linkedLogo} alt='linkedIn'/></Card.Link>
+            <Card.Link  href="https://github.com/nojadzworld" target="_blank"><img id='githublogo' src={githubLogo} alt='Github'/></Card.Link>
+            <Card.Link href="https://www.linkedin.com/in/dajon-e/" target="_blank"><img id='linkedlogo' src={linkedLogo} alt='linkedIn'/></Card.Link>
           </Card.Body>
         </Card>
 
@@ -32,8 +32,8 @@ class About extends React.Component {
               test
             </Card.Text>
 
-            <Card.Link href="https://github.com/teamidol"><img id='githublogo' src={githubLogo} alt='Github'/></Card.Link>
-            <Card.Link href="https://www.linkedin.com/in/teamidol/"><img id='linkedlogo' src={linkedLogo} alt='linkedIn'/></Card.Link>
+            <Card.Link href="https://github.com/teamidol" target="_blank"><img id='githublogo' src={githubLogo} alt='Github'/></Card.Link>
+            <Card.Link href="https://www.linkedin.com/in/teamidol/" target="_blank"><img id='linkedlogo' src={linkedLogo} alt='linkedIn'/></Card.Link>
 
           </Card.Body>
         </Card>
@@ -46,8 +46,8 @@ class About extends React.Component {
               I am a United States Marine Corps veteran who served as an infantry rifleman. I am currently attending Code Fellows to become a Full-Stack Developer specializing in JavaScript.
               Fun Fact: Reece is going to be probably become a backend dev because he has no styling capabilities and the front end hates him.
             </Card.Text>
-            <Card.Link href="https://github.com/ReeceRenninger"><img id='githublogo' src={githubLogo} alt='Github'/></Card.Link>
-            <Card.Link href="https://www.linkedin.com/in/reecerenninger/"><img id='linkedlogo' src={linkedLogo} alt='linkedIn'/></Card.Link>
+            <Card.Link href="https://github.com/ReeceRenninger" target="_blank"><img id='githublogo' src={githubLogo} alt='Github'/></Card.Link>
+            <Card.Link href="https://www.linkedin.com/in/reecerenninger/" target="_blank"><img id='linkedlogo' src={linkedLogo} alt='linkedIn'/></Card.Link>
           </Card.Body>
         </Card>
 
@@ -58,8 +58,8 @@ class About extends React.Component {
             <Card.Text>
               test
             </Card.Text>
-            <Card.Link href="https://github.com/s-glass"><img id='githublogo' src={githubLogo} alt='Github'/></Card.Link>
-            <Card.Link href="https://www.linkedin.com/in/sarah-codes/"><img id='linkedlogo' src={linkedLogo} alt='linkedIn'/></Card.Link>
+            <Card.Link href="https://github.com/s-glass" target="_blank"><img id='githublogo' src={githubLogo} alt='Github'/></Card.Link>
+            <Card.Link href="https://www.linkedin.com/in/sarah-codes/" target="_blank"><img id='linkedlogo' src={linkedLogo} alt='linkedIn'/></Card.Link>
           </Card.Body>
         </Card>
 
