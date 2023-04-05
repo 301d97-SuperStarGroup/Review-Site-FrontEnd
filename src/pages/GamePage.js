@@ -30,7 +30,7 @@ class GamePage extends React.Component {
         const response = await this.props.auth0.getIdTokenClaims();
 
         const jwt = response.__raw;
-
+        console.log(jwt);
 
         const config = {
           headers: { "Authorization": `Bearer ${jwt}` },

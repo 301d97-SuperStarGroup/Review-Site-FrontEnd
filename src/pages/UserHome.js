@@ -47,7 +47,7 @@ class UserHome extends React.Component {
       });
     }
   }
-
+  //** Delete game via button on card from user games */
   deleteGame = async (id) => {
     try {
       if (this.props.auth0.isAuthenticated) {
@@ -60,15 +60,14 @@ class UserHome extends React.Component {
           headers: { "Authorization": `Bearer ${jwt}` },
           method: 'delete',
           baseURL: process.env.REACT_APP_SERVER,
-          url: `/games${id}`
+          url: `/games/${id}`
 
         }
-        let gameData = await axios(config);
+        await axios(config);
 
         console.log('Is the delete firing?')
 
         this.setState({
-          userGames: gameData.data,
           error: false
         });
       }
