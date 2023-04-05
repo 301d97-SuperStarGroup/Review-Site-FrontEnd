@@ -15,7 +15,7 @@ class About extends React.Component {
           <Card.Body>
             <Card.Title>DaJon Ewing</Card.Title>
             <Card.Text>
-              test
+            I am a student software developer and US Navy veteran residing in Port Orchard, Wa with a background in Logistical Operations and Inventory Management. I am dedicated to making a difference in the constantly evolving tech industry through software development.
             </Card.Text>
             <Card.Link href="https://github.com/nojadzworld">GitHub</Card.Link>
             <Card.Link href="https://www.linkedin.com/in/dajon-e/">LinkedIn</Card.Link>
@@ -30,7 +30,7 @@ class About extends React.Component {
               test
             </Card.Text>
             <Card.Link href="https://github.com/teamidol">GitHub</Card.Link>
-            <Card.Link href="need Laurence's LinkedIn here">LinkedIn</Card.Link>
+            <Card.Link href="https://www.linkedin.com/in/teamidol/">LinkedIn</Card.Link>
           </Card.Body>
         </Card>
 
