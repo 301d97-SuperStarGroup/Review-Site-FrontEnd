@@ -20,34 +20,34 @@ class UpdateGameForm extends React.Component {
 
   render() {
     return {
-    { this.props.game ?
-        <Modal show={this.props.show} onHide={this.props.onHide}>
+    // { this.props.game ?
+    //     <Modal show={this.props.show} onHide={this.props.onHide}>
 
-          <Modal.Header closeButton><Modal.Title>game title</Modal.Title></Modal.Header>
+    //       <Modal.Header closeButton><Modal.Title>game title</Modal.Title></Modal.Header>
 
-          <Container className="mt-5">
+    //       <Container className="mt-5">
 
-            <Form onSubmit={this.handleGameSubmit}>
-              <Form.Group controlID="title">
-                <Form.Label>Game Title</Form.Label>
-                <Form.Control type="text" defaultValue={this.props.game.title} />
-              </Form.Group>
+    //         <Form onSubmit={this.handleGameSubmit}>
+    //           <Form.Group controlID="title">
+    //             <Form.Label>Game Title</Form.Label>
+    //             <Form.Control type="text" defaultValue={this.props.game.title} />
+    //           </Form.Group>
 
-              <Form.Group controlId="playStatus">
-                <Form.Label>Play Status</Form.Label>
-                <Form.Control type="checkbox" defaultValue={this.props.game.playStatus} />
-              </Form.Group>
+    //           <Form.Group controlId="playStatus">
+    //             <Form.Label>Play Status</Form.Label>
+    //             <Form.Control type="checkbox" defaultValue={this.props.game.playStatus} />
+    //           </Form.Group>
 
-              <Form.Group controlId="reviewNotes">
-                <Form.Label>Game Review/Notes</Form.Label>
-                <Form.Control type="text" defaultValue={this.props.reviewNotes} />
-              </Form.Group>
+    //           <Form.Group controlId="reviewNotes">
+    //             <Form.Label>Game Review/Notes</Form.Label>
+    //             <Form.Control type="text" defaultValue={this.props.reviewNotes} />
+    //           </Form.Group>
 
-              <Button type="submit">Update Game Notes</Button>
-            </Form>
-          </Container>
-        </Modal>
-        : null
+    //           <Button type="submit">Update Game Notes</Button>
+    //         </Form>
+    //       </Container>
+    //     </Modal>
+    //     : null
     }
   };
 }
