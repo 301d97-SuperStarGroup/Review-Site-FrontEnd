@@ -33,8 +33,8 @@ text-align: center;
 /** game card buttons*/
 /** GAME CARD BUTTON STYLING IS BEING DONE INLINE FOR POSITIONING*/
 .btn-success{
-  padding: 10px 20px !important;
-  font-size: 20px !important;
+  padding: 5px 15px !important;
+  font-size: 18px !important;
   text-align: center !important;
   cursor: pointer !important;
   outline: none !important;
@@ -75,6 +75,17 @@ text-align: center;
   box-shadow: 0 9px #999 !important;
 }
 
+.card-link:link{
+  text-decoration: none;
+
+}
+
+
+.card-link:hover{
+  text-decoration: underline;
+  color: purple;
+  font-size: 125%;
+}
 .form-select{
   width: fit-content !important;
   display: block !important;
