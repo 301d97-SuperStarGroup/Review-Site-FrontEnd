@@ -14,14 +14,18 @@ https://www.freetogame.com/
 
 ## Wireframing
 
-![Wirefrmae Image](./imgs/301-project-whiteboard.png)
+![Wirefrmae Image](/src/img/301-project-whiteboard.png)
 
 ## Domain Modeling
 
-![DOM Backend Image](./imgs/DOM-Backend.png)
+![DOM Backend Image](/src/img/DOM-Frontend.png)
 
-![DOM Frontend Image](./imgs/DOM-Frontend.png)
+![DOM Frontend Image](/src/img/DOM-Frontend.png)
 
 ## Data Schema
 
 ![Data Schema](./imgs/Data-Schema.png)
+
+## References
+
+- Intro gif was downloaded [Matthew Henry Gif](https://giphy.com/gifs/gg-good-game-galaga-RtpmUzMbynBeCgEa5E)
