@@ -1,10 +1,12 @@
 import React from "react";
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
-import { Container, Form, Modal } from 'react-bootstrap';
+// import { Container, Form, Modal } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import UpdateGameReview from "./UpdateGameReview";
 
 class UserHome extends React.Component {
   constructor(props) {
@@ -112,6 +114,7 @@ class UserHome extends React.Component {
     }
     console.log(gameToUpdate);
     this.props.updateGame(gameToUpdate);
+    this.handleCloseModal();
   }
 
   // handleGameSubmit = (event) => { // taken from BestBooks.js, which had the BestBooks class, same handler name called handleBookSubmit, and handler varible "bookObj"
@@ -162,12 +165,6 @@ class UserHome extends React.Component {
     }
   }
 
-  closeModal = () => {
-    this.setState({
-      showForm: false
-    })
-  }
-
 
   //** React lifecycle to pull user game to home page on load */
   componentDidMount() {
@@ -176,67 +173,33 @@ class UserHome extends React.Component {
   }
 
   render() {
+    console.log(this.state.userGames);
     return (
       <>
         <Container className='gameCards'>
 
           {this.state.userGames.map((game) =>
             <Card key={game._id} style={{ width: '18rem' }}>
-              <Card.Img variant="top" src={game.thumbnail} />
+              <Card.Img variant="top" src={game.thumbnail} alt={game.short_description}/>
               <Card.Body>
                 <Card.Title>{game.title}</Card.Title>
                 <Card.Text>
                   {game.short_description}
                 </Card.Text>
-                <Card.Link style={{display: 'flex', justifyContent: 'center'}} href={game.freetogame_profile_url}>Game Link</Card.Link>
+                <Card.Link style={{display: 'flex', justifyContent: 'center'}} href={game.freetogame_profile_url} target="_blank" >Game Link</Card.Link>
                 <ListGroup variant="flush">
                   <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
                 </ListGroup>
-                <Button  variant="info" onClick = {() => { this.updateGame(game._id) }}>Write A Review</Button>
+                {/* <Button  variant="info" onClick = {() => { this.updateGame(game._id) }}>Write A Review</Button> */}
+                { this.state.showModal ? <UpdateGameReview userGames={this.state.userGames} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit}/> :<Button  variant="info" onClick = { this.handleOpenModal } >Write A Review</Button> }
                 <Button  variant="danger" onClick = {() => { this.deleteGame(game._id) }}>Delete Game</Button>
                 {/* <Button onClick={() => { this.setState({showForm: true, gameToUpdate: game}) }}>Open Update Form</Button> */}
               </Card.Body>
             </Card>
+
           )}
 
         </Container>
-
-
-{/* render() {
-  return {
-  { this.props.game ?
-      <Modal show={this.props.show} onHide={this.props.onHide}>
-
-        <Modal.Header closeButton><Modal.Title>game title</Modal.Title></Modal.Header>
-
-        <Container className="mt-5">
-
-          <Form onSubmit={this.handleGameSubmit}>
-            <Form.Group controlID="title" className="mb-3" disabled>
-              <Form.Label>Game Title</Form.Label>
-              <Form.Control id="disabledTextInput" placeholder="Disabled input"type="text" defaultValue={this.props.game.title} />
-            </Form.Group>
-
-            <Form.Group controlId="playStatus">
-              <Form.Label>Play Status</Form.Label>
-              <Form.Control type="checkbox" defaultValue={this.props.game.playStatus} />
-            </Form.Group>
-
-            <Form.Group controlId="reviewNotes">
-              <Form.Label>Game Review/Notes</Form.Label>
-              <Form.Control type="text" defaultValue={this.props.reviewNotes} />
-            </Form.Group>
-
-            <Button type="submit">Update Game Notes</Button>
-          </Form>
-        </Container>
-      </Modal>
-      : null
-  }
-};
-} */}
-
-
         
       </>
     )
