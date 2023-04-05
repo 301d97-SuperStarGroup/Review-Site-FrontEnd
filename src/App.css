@@ -30,11 +30,6 @@ body{
 .list-group-item{
 text-align: center;
 }
-/** game card links*/
-.card-link{
-  display: flex;
-  justify-content: center;
-}
 /** game card buttons*/
 /** GAME CARD BUTTON STYLING IS BEING DONE INLINE FOR POSITIONING*/
 .btn-primary{
