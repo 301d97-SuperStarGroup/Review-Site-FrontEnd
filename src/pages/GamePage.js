@@ -185,7 +185,7 @@ class GamePage extends React.Component {
               <ListGroup variant="flush">
                 <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
               </ListGroup>
-              <Button style={{display: 'block', margin: 'auto'}} onClick={()=>{ this.handleSaveGame(game)}} variant="success">SAVE</Button>
+              <button style={{display: 'block', margin: 'auto'}} onClick={()=>{ this.handleSaveGame(game)}} class="nes-btn is-success">SAVE</button>
               
             </Card.Body>
           </Card>

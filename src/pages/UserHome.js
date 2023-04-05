@@ -102,8 +102,8 @@ class UserHome extends React.Component {
                 <ListGroup variant="flush">
                   <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
                 </ListGroup>
-                <Button variant="info">Write a Review</Button>
-                <Button  variant="danger" onClick = {() => { this.deleteGame(game._id) }}>Delete Game</Button>
+                <button class="nes-btn is-primary" style={{display: 'flex', flexWrap: 'wrap',padding: ''}}>Write a Review</button>
+                <button   class="nes-btn is-error" style={{display: 'flex', flexWrap: 'wrap'}} onClick = {() => { this.deleteGame(game._id) }}>Delete Game</button>
               </Card.Body>
             </Card>
           )}
