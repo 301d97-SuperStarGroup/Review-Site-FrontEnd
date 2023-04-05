@@ -17,18 +17,18 @@ class About extends React.Component {
             <Card.Text>
               test
             </Card.Text>
-
+            <Card.Link href="https://github.com/nojadzworld">GitHub</Card.Link>
           </Card.Body>
         </Card>
 
         <Card style={{ width: '25rem' }}>
           <Card.Img variant="top" src={laurence} />
           <Card.Body>
-            <Card.Title>Laurence </Card.Title>
+            <Card.Title>Laurence Vinzen</Card.Title>
             <Card.Text>
               test
             </Card.Text>
-
+            <Card.Link href="https://github.com/teamidol">GitHub</Card.Link>
           </Card.Body>
         </Card>
 
@@ -39,7 +39,7 @@ class About extends React.Component {
             <Card.Text>
               Reece is going to be probably become a backend dev because he has no styling capabilities and the front end hates him.
             </Card.Text>
-
+            <Card.Link href="https://github.com/ReeceRenninger">GitHub</Card.Link>
           </Card.Body>
         </Card>
 
@@ -50,7 +50,7 @@ class About extends React.Component {
             <Card.Text>
               test
             </Card.Text>
-
+            <Card.Link href="https://github.com/s-glass">GitHub</Card.Link>
           </Card.Body>
         </Card>
 

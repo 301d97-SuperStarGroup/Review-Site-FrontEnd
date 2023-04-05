@@ -48,7 +48,6 @@ class UserHome extends React.Component {
     }
   }
 
-  //!! LAURENCE WORK ON DELETE FUNCTIONALITY FOR SAVED GAMES
   deleteGame = async (id) => {
     try {
       if (this.props.auth0.isAuthenticated) {
@@ -89,7 +88,6 @@ class UserHome extends React.Component {
   render() {
     return (
       <>
-        {/* MAP OVER GAME OBJECT SAVED DATA TO GENERATE CARDS OF GAME INFORMATION */}
         <Container className='gameCards'>
 
           {this.state.userGames.map((game) =>

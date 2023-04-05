@@ -1,23 +1,19 @@
-/* Header Nav Bar Links */
+/** Header Nav Bar Links */
 .nav-link{
   color:white !important;
   padding: 10px !important;
 }
-
+/** about us cards**/
 #aboutUsCards{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  text-align: center;
 }
 .card-img-top{
-  width: fit-content;
-  height: fit-content;
 }
 
-.navbar-brand{
-  
-}
-
+/** design for cards on user page and public page **/
 .gameCards{
   display: flex;
   flex-wrap: wrap;
