@@ -18,6 +18,7 @@ class About extends React.Component {
               test
             </Card.Text>
             <Card.Link href="https://github.com/nojadzworld">GitHub</Card.Link>
+            <Card.Link href="https://www.linkedin.com/in/dajon-e/">LinkedIn</Card.Link>
           </Card.Body>
         </Card>
 
@@ -29,6 +30,7 @@ class About extends React.Component {
               test
             </Card.Text>
             <Card.Link href="https://github.com/teamidol">GitHub</Card.Link>
+            <Card.Link href="need Laurence's LinkedIn here">LinkedIn</Card.Link>
           </Card.Body>
         </Card>
 
@@ -40,6 +42,7 @@ class About extends React.Component {
               Reece is going to be probably become a backend dev because he has no styling capabilities and the front end hates him.
             </Card.Text>
             <Card.Link href="https://github.com/ReeceRenninger">GitHub</Card.Link>
+            <Card.Link href="https://www.linkedin.com/in/reecerenninger/">LinkedIn</Card.Link>
           </Card.Body>
         </Card>
 
@@ -51,6 +54,7 @@ class About extends React.Component {
               test
             </Card.Text>
             <Card.Link href="https://github.com/s-glass">GitHub</Card.Link>
+            <Card.Link href="https://www.linkedin.com/in/sarah-codes/">LinkedIn</Card.Link>
           </Card.Body>
         </Card>
 
