@@ -194,7 +194,7 @@ class UserHome extends React.Component {
                 <Card.Text>
                   {game.short_description}
                 </Card.Text>
-                <Card.Link style={{display: 'flex', justifyContent: 'center'}} href={game.freetogame_profile_url}>Game Link</Card.Link>
+                <Card.Link style={{display: 'flex', justifyContent: 'center'}} href={game.freetogame_profile_url} target="_blank" >Game Link</Card.Link>
                 <ListGroup variant="flush">
                   <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
                 </ListGroup>
