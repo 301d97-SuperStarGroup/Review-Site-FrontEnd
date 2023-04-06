@@ -5,7 +5,7 @@ class UpdateGameReview extends React.Component {
 
 
   render() {
-    console.log(this.props.userGames.title);
+    console.log(this.props.userGames);
     return (
           <Modal show={this.props.show}>
 
@@ -13,15 +13,13 @@ class UpdateGameReview extends React.Component {
 
             <Container className="mt-5">
 
-              <Form onSubmit={this.props.handleGameSubmit}>
-                {/* <Form.Group controlId="title" className="mb-3" disabled>
-                  <Form.Label>Game Title</Form.Label>
-                  <Form.Control id="disabledTextInput" placeholder="Disabled input" type="text" defaultValue={this.props.userGames.title} />
-                </Form.Group> */}
+              <Form onSubmit={(e) => {this.props.handleGameSubmit(e, this.props.userGames)}}>
+
+                <h1>{this.props.userGames.title}</h1>
 
                 <Form.Group controlId="play_status">
-                  <Form.Label>Play Status</Form.Label>
-                  <Form.Control type="checkbox" defaultValue={this.props.userGames.playStatus} />
+                  <Form.Label>Has Been Played</Form.Label>
+                  <Form.Check type="checkbox" defaultChecked={this.props.userGames.playStatus} />
                 </Form.Group>
 
                 <Form.Group controlId="reviewNotes">

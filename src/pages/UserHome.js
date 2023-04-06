@@ -50,7 +50,7 @@ class UserHome extends React.Component {
 
         const config = {
           headers: { "Authorization": `Bearer ${jwt}` },
-          method: 'get', 
+          method: 'get',
           baseURL: process.env.REACT_APP_SERVER,
           url: '/myGames'
         }
@@ -73,7 +73,7 @@ class UserHome extends React.Component {
   }
 
 
-//** Delete a user saved game via button */
+  //** Delete a user saved game via button */
 
   deleteGame = async (id) => {
     try {
@@ -109,24 +109,30 @@ class UserHome extends React.Component {
     }
   }
 
-  handleGameSubmit = (event) => { // taken from UpdateBookForm.js which had it's own class "UpdateBookForm", handler called handleBookSubmit, and handler variable "bookToUpdate"
+  handleGameSubmit = (event, game) => { // taken from UpdateBookForm.js which had it's own class "UpdateBookForm", handler called handleBookSubmit, and handler variable "bookToUpdate"
     event.preventDefault();
-  
+
     let gameToUpdate = {
-      title: event.target.title.value,
-      play_status: event.target.play_status.value,
+      title: game.title,
+      playStatus: event.target.play_status.checked,
       reviewNotes: event.target.reviewNotes.value,
-      _id: this.props.game._id,
-      _v: this.props.game._v
+      id: game.id,
+      thumbnail: game.thumbnail,
+      short_description: game.short_description,
+      genre: game.genre,
+      freetogame_profile_url: game.freetogame_profile_url,
+      email: game.email,
+      _id: game._id,
+      __v: game.__v
     }
     console.log(gameToUpdate);
-    this.props.updateGame(gameToUpdate);
+    this.updateGame(gameToUpdate);
     this.handleCloseModal();
   }
 
   // handleGameSubmit = (event) => { // taken from BestBooks.js, which had the BestBooks class, same handler name called handleBookSubmit, and handler varible "bookObj"
   //   event.preventDefault();
-  
+
   //   let gameObj = {
   //     title: event.target.title.value,
   //     play_status: event.target.play_status.value,
@@ -140,7 +146,7 @@ class UserHome extends React.Component {
 
   postGame = async (gameToUpdate) => {
     try {
-      let url = `${process.env.REACT_APP_SERVER}/games`    // get is /games, get is also myGames, delete is games/gameID, post is /games, put is gameID
+      let url = `${process.env.REACT_APP_SERVER}/games`
       let createdReview = await axios.post(url, gameToUpdate)
 
       this.setState({
@@ -153,20 +159,32 @@ class UserHome extends React.Component {
 
   updateGame = async (gameObjToUpdate) => {
     try {
-      let url = `${process.env.REACT_APP_SERVER}/games/${gameObjToUpdate._id}`
+      if (this.props.auth0.isAuthenticated){
+        const response = await this.props.auth0.getIdTokenClaims();
 
-      let updatedGame = await axios.put(url, gameObjToUpdate)
+        const jwt = response.__raw;
 
-      let updatedGameArray = this.state.games.map(existingGame => {
-        return existingGame._id === gameObjToUpdate._id
-        ? updatedGame.data
-        : existingGame
-      })
+        const config = {
+          headers: { "Authorization": `Bearer ${jwt}` },
+          method: 'put',
+          baseURL: process.env.REACT_APP_SERVER,
+          url: `/games/${gameObjToUpdate._id}`,
+          data: gameObjToUpdate
+        }
+        let updatedGame = await axios(config)
 
-      this.setState({
-        games: updatedGameArray,
-        showModal: true
-      })
+        let updatedGameArray = this.state.games.map(existingGame => {
+          return existingGame._id === gameObjToUpdate._id
+            ? updatedGame.data
+            : existingGame
+        })
+  
+        this.setState({
+          games: updatedGameArray,
+          showModal: true
+        })
+      }
+      
     } catch (error) {
       console.log(error.message)
     }
@@ -187,19 +205,21 @@ class UserHome extends React.Component {
 
           {this.state.userGames.map((game) =>
             <Card key={game._id} style={{ width: '18rem' }}>
-              <Card.Img variant="top" src={game.thumbnail} alt={game.short_description}/>
+              <Card.Img variant="top" src={game.thumbnail} alt={game.short_description} />
               <Card.Body>
                 <Card.Title>{game.title}</Card.Title>
                 <Card.Text>
                   {game.short_description}
                 </Card.Text>
-                <Card.Link style={{display: 'flex', justifyContent: 'center'}} href={game.freetogame_profile_url} target="_blank" >Game Link</Card.Link>
+                <Card.Link style={{ display: 'flex', justifyContent: 'center' }} href={game.freetogame_profile_url} target="_blank" >Game Link</Card.Link>
                 <ListGroup variant="flush">
                   <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
                 </ListGroup>
-                <button class="nes-btn is-primary" style={{display: 'flex', flexWrap: 'wrap',padding: ''}} onClick = {() => { this.updateGame(game._id) }}>Write a Review</button>
+                {/* <button class="nes-btn is-primary" style={{display: 'flex', flexWrap: 'wrap',padding: ''}} onClick = {() => { this.updateGame(game) }}>Write a Review</button>
+                 */}
+                {this.state.showModal ? <UpdateGameReview userGames={game} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit} /> : <button class="nes-btn is-primary" style={{display: 'flex', flexWrap: 'wrap',padding: ''}} onClick = {() => { this.setState({showModal:true}) }}>Write a Review</button>}
+
                 <button   class="nes-btn is-error" style={{display: 'flex', flexWrap: 'wrap'}} onClick = {() => { this.deleteGame(game._id) }}>Delete Game</button>
-                 {/* <Button onClick={() => { this.setState({showForm: true, gameToUpdate: game}) }}>Open Update Form</Button> */}
 
               </Card.Body>
             </Card>
@@ -207,7 +227,7 @@ class UserHome extends React.Component {
           )}
 
         </Container>
-        
+
       </>
     )
   }
@@ -218,15 +238,3 @@ export default withAuth0(UserHome);
 
 
 
-
-
-// After the last Card, but within the Container:
-
-// {this.props.showModal ? <GameModal show={this.props.openModal} onHide={this.props.closeModal} handleBookSubmit={this.handleGameSubmit} /> : <Button onClick={this.props.openModal}>Add Game Review</Button>}
-              
-// <UpdateGameForm 
-//         show={this.state.showForm}
-//         onHide={this.closeModal}
-//         game={this.state.gameToUpdate}
-//         updateGame={this.updateGame}
-//         />
