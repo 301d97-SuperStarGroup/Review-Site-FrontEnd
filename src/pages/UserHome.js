@@ -92,10 +92,10 @@ class UserHome extends React.Component {
         }
         await axios(config);
 
-        let updatedGames = this.state.userGames.filter(game => game._id !== id); 
-        console.log('Game id that was deleted '+ id);
+        let updatedGames = this.state.userGames.filter(game => game._id !== id);
+        console.log('Game id that was deleted ' + id);
         this.setState({
-          userGames: updatedGames,    
+          userGames: updatedGames,
           error: false
         });
       }
@@ -106,8 +106,8 @@ class UserHome extends React.Component {
       });
     }
   }
-
-  handleGameSubmit = (event, game) => { 
+  //  ** Triggered from form submission on UpdateGameReviews and invokes updateGame"
+  handleGameSubmit = (event, game) => {
     event.preventDefault();
 
     let gameToUpdate = {
@@ -127,11 +127,47 @@ class UserHome extends React.Component {
     this.updateGame(gameToUpdate);
     this.handleCloseModal();
   }
+  //!! ASK AUDREY IF THIS IS SET UP CORRECTLY */
+  postGame = async (gameToUpdate) => {
+    try {
+      if (this.props.auth0.isAuthenticated) {
+        const response = await this.props.auth0.getIdTokenClaims();
+
+        const jwt = response.__raw;
+
+        const config = {
+          headers: { "Authorization": `Bearer ${jwt}` },
+          method: 'post',
+          baseURL: process.env.REACT_APP_SERVER,
+          url: `/games`,
+          data: gameToUpdate
+        }
+
+        await axios(config)
+
+        this.setState({
+          games: [...this.state.games, gameToUpdate]
+        })
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+
+    // try {
+    //   let url = `${process.env.REACT_APP_SERVER}/games`
+    //   let createdReview = await axios.post(url, gameToUpdate)
+    //   this.setState({
+    //     games: [...this.state.games, createdReview.data],
+    //   })
+    // } catch (error) {
+    //   console.log(error.message)
+    // }
+  }
 
   //** Create a review for game selected on user games */
   updateGame = async (gameObjToUpdate) => {
     try {
-      if (this.props.auth0.isAuthenticated){
+      if (this.props.auth0.isAuthenticated) {
         const response = await this.props.auth0.getIdTokenClaims();
 
         const jwt = response.__raw;
@@ -150,13 +186,13 @@ class UserHome extends React.Component {
             ? updatedGame.data
             : existingGame
         })
-  
+
         this.setState({
-          userGames: updatedGameArray,
+          games: updatedGameArray,
           showModal: true
         })
       }
-      
+
     } catch (error) {
       console.log(error.message)
     }
@@ -187,14 +223,18 @@ class UserHome extends React.Component {
                   <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
                 </ListGroup>
 
-                {this.state.showModal ? <UpdateGameReview userGames={game} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit} handleCloseModal ={this.handleCloseModal}/> : <button style={{display: "inline-block"}} className="nes-btn is-primary"  onClick = {() => { this.setState({showModal:true}) }}>Write a Review</button>}
+                {this.state.showModal
+                  ?
+                  <UpdateGameReview userGames={game} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit} handleCloseModal={this.handleCloseModal} />
+                  :
+                  <button style={{ display: "inline-block" }} className="nes-btn is-primary" onClick={() => { this.setState({ showModal: true }) }}>Write a Review</button>}
 
 
-                <button   className="nes-btn is-error" style={{display: "inline-block"}}  onClick = {() => { this.deleteGame(game._id) }}>Delete Game</button>
-                 <Card.Text className="reviewNotes">
+                <button className="nes-btn is-error" style={{ display: "inline-block" }} onClick={() => { this.deleteGame(game._id) }}>Delete Game</button>
+                <Card.Text className="reviewNotes">
                   {/* User Play Status: {game.playStatus} */}
                   User Review: {game.reviewNotes}
-                 </Card.Text>
+                </Card.Text>
 
               </Card.Body>
             </Card>
