@@ -93,7 +93,7 @@ class UserHome extends React.Component {
         await axios(config);
 
         let updatedGames = this.state.userGames.filter(game => game._id !== id); 
-
+        console.log('Game id that was deleted '+ id);
         this.setState({
           userGames: updatedGames,    
           error: false
@@ -187,10 +187,10 @@ class UserHome extends React.Component {
                   <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
                 </ListGroup>
 
-                {this.state.showModal ? <UpdateGameReview userGames={game} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit} handleCloseModal ={this.handleCloseModal}/> : <button className="nes-btn is-primary"  onClick = {() => { this.setState({showModal:true}) }}>Write a Review</button>}
+                {this.state.showModal ? <UpdateGameReview userGames={game} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit} handleCloseModal ={this.handleCloseModal}/> : <button style={{display: "inline-block"}} className="nes-btn is-primary"  onClick = {() => { this.setState({showModal:true}) }}>Write a Review</button>}
 
 
-                <button   className="nes-btn is-error"  onClick = {() => { this.deleteGame(game._id) }}>Delete Game</button>
+                <button   className="nes-btn is-error" style={{display: "inline-block"}}  onClick = {() => { this.deleteGame(game._id) }}>Delete Game</button>
                  <Card.Text className="reviewNotes">
                   {/* User Play Status: {game.playStatus} */}
                   User Review: {game.reviewNotes}

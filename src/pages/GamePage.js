@@ -73,15 +73,14 @@ class GamePage extends React.Component {
           data: gameObj
           //data property will be our game object to save
         }
-        let gameData = await axios(config);
+        await axios(config);
         
 
         this.setState({
-      
           error: false
         });
         
-        console.log(gameData.data);
+        console.log('Game information that was saved: ' + gameObj.title);
 
       }
     } catch (error) {
