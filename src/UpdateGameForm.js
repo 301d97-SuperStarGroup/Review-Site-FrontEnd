@@ -10,6 +10,7 @@ class UpdateGameForm extends React.Component {
       title: event.target.title.value,
       play_status: event.target.play_status.value,
       reviewNotes: event.target.reviewNotes.value,
+      email: this.props.game.email, // added to test if email comes through 
       _id: this.props.game._id,
       _v: this.props.game._v
     }

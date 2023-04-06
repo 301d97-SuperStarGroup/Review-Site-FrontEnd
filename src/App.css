@@ -54,6 +54,19 @@ body{
   font-family: 'Press Start 2P', cursive;
 
 }
+
+/** Review notes section on userHome*/
+.reviewNotes{
+  text-align: center;
+}
+/** Buttons on user games for review/delete */
+.is-error{
+  justify-content: center !important;
+}
+.is-primary{
+
+}
+
 /** about us cards**/
 #aboutUsCards{
   display: flex !important;
