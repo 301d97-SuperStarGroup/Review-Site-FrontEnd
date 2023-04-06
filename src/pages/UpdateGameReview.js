@@ -7,9 +7,10 @@ class UpdateGameReview extends React.Component {
   render() {
     console.log(this.props.userGames);
     return (
-          <Modal show={this.props.show}>
+          <Modal show={this.props.show} onHide= {this.props.handleCloseModal}>
 
-            <Modal.Header closeButton><Modal.Title>Game Notes</Modal.Title></Modal.Header>
+            <Modal.Header closeButton ><Modal.Title>Game Notes</Modal.Title></Modal.Header>
+               
 
             <Container className="mt-5">
 
@@ -26,7 +27,6 @@ class UpdateGameReview extends React.Component {
                   <Form.Label>Game Review/Notes</Form.Label>
                   <Form.Control type="text" defaultValue={this.props.userGames.reviewNotes} />
                 </Form.Group>
-
                 <Button type="submit">Update Game Notes</Button>
               </Form>
             </Container>
