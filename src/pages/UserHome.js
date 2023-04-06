@@ -21,6 +21,7 @@ class UserHome extends React.Component {
     }
   }
 
+
   //** Modal Handlers for show/hide */
   handleCloseModal = () => {
     this.setState({
@@ -89,10 +90,10 @@ class UserHome extends React.Component {
         }
         await axios(config);
 
-        let updatedGames = this.state.userGames.filter(game => game._id !== id);
+        let deletedGames = this.state.userGames.filter(game => game._id !== id);
         console.log('Game id that was deleted ' + id);
         this.setState({
-          userGames: updatedGames,
+          userGames: deletedGames,
           error: false
         });
       }
@@ -124,7 +125,7 @@ class UserHome extends React.Component {
     this.createReview(gameToUpdate);
     this.handleCloseModal();
   }
-  
+
   //** Create a review for game selected on user games */
   createReview = async (gameToUpdate) => {
     try {
@@ -142,7 +143,7 @@ class UserHome extends React.Component {
         }
         let updatedGame = await axios(config)
 
-        let updatedGameArray = this.state.games.map(existingGame => {
+        let updatedGameArray = this.state.userGames.map(existingGame => {
           return existingGame._id === gameToUpdate._id
             ? updatedGame.data
             : existingGame
@@ -150,9 +151,9 @@ class UserHome extends React.Component {
         console.log(updatedGameArray);
         this.setState({
           userGames: updatedGameArray,
-          showModal: true
+
         })
-        
+
       }
 
     } catch (error) {
@@ -222,9 +223,7 @@ class UserHome extends React.Component {
                   <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
                 </ListGroup>
 
-
-
-              <button style={{ display: "inline-block" }} className="nes-btn is-primary" onClick={() => { this.setState({ showModal: true, selectedGame: game }) }}>Write a Review</button>
+                <button style={{ display: "inline-block" }} className="nes-btn is-primary" onClick={() => { this.setState({ showModal: true, selectedGame: game }) }}>Write a Review</button>
                 <button className="nes-btn is-error" style={{ display: "inline-block" }} onClick={() => { this.deleteGame(game._id) }}>Delete Game</button>
                 <Card.Text className="reviewNotes">
                   {/* User Play Status: {game.playStatus} */}
@@ -236,10 +235,10 @@ class UserHome extends React.Component {
 
           )}
           {this.state.showModal &&
-            
+
             <UpdateGameReview userGames={this.state.selectedGame} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit} handleCloseModal={this.handleCloseModal} />
-            
-            }
+
+          }
 
         </Container>
 
