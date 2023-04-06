@@ -96,13 +96,14 @@ class GamePage extends React.Component {
     // this is not working correctly
     if (event.target.value === 'View Games by Genre') {
       let allRender = this.state.games.filter(e => e.title.length > 0);
+      console.log(allRender);
       this.setState({
         filteredGames: allRender
       })
     } else {
       // this is working fine
       let selectedGenre = event.target.value;
-      console.log(this.state.games);
+    
       let genreData = this.state.games.filter(g => g.genre.toLowerCase() === selectedGenre.toLowerCase());
       console.log(genreData);
 
