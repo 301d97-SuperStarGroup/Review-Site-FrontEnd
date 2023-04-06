@@ -107,7 +107,7 @@ class UserHome extends React.Component {
     }
   }
 
-  handleGameSubmit = (event, game) => { // taken from UpdateBookForm.js which had it's own class "UpdateBookForm", handler called handleBookSubmit, and handler variable "bookToUpdate"
+  handleGameSubmit = (event, game) => { 
     event.preventDefault();
 
     let gameToUpdate = {
@@ -128,33 +128,7 @@ class UserHome extends React.Component {
     this.handleCloseModal();
   }
 
-  // handleGameSubmit = (event) => { // taken from BestBooks.js, which had the BestBooks class, same handler name called handleBookSubmit, and handler varible "bookObj"
-  //   event.preventDefault();
-
-  //   let gameObj = {
-  //     title: event.target.title.value,
-  //     play_status: event.target.play_status.value,
-  //     reviewNotes: event.target.reviewNotes.value,
-  //   }
-  //   console.log(gameObj);
-  //   this.postGame(gameObj);
-  //   this.props.closeModal;
-  // }
-
-
-  postGame = async (gameToUpdate) => {
-    try {
-      let url = `${process.env.REACT_APP_SERVER}/games`
-      let createdReview = await axios.post(url, gameToUpdate)
-
-      this.setState({
-        games: [...this.state.games, createdReview.data],
-      })
-    } catch (error) {
-      console.log(error.message)
-    }
-  }
-
+  //** Create a review for game selected on user games */
   updateGame = async (gameObjToUpdate) => {
     try {
       if (this.props.auth0.isAuthenticated){
