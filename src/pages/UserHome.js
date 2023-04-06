@@ -124,45 +124,9 @@ class UserHome extends React.Component {
     this.createReview(gameToUpdate);
     this.handleCloseModal();
   }
-  //!! ASK AUDREY IF THIS IS SET UP CORRECTLY */
-  postGame = async (gameToUpdate) => {
-    try {
-      if (this.props.auth0.isAuthenticated) {
-        const response = await this.props.auth0.getIdTokenClaims();
-
-        const jwt = response.__raw;
-
-        const config = {
-          headers: { "Authorization": `Bearer ${jwt}` },
-          method: 'post',
-          baseURL: process.env.REACT_APP_SERVER,
-          url: `/games`,
-          data: gameToUpdate
-        }
-
-        await axios(config)
-
-        this.setState({
-          games: [...this.state.games, gameToUpdate]
-        })
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-
-    // try {
-    //   let url = `${process.env.REACT_APP_SERVER}/games`
-    //   let createdReview = await axios.post(url, gameToUpdate)
-    //   this.setState({
-    //     games: [...this.state.games, createdReview.data],
-    //   })
-    // } catch (error) {
-    //   console.log(error.message)
-    // }
-  }
-
+  
   //** Create a review for game selected on user games */
-  createReview = async (gameObjToUpdate) => {
+  createReview = async (gameToUpdate) => {
     try {
       if (this.props.auth0.isAuthenticated) {
         const response = await this.props.auth0.getIdTokenClaims();
@@ -173,27 +137,65 @@ class UserHome extends React.Component {
           headers: { "Authorization": `Bearer ${jwt}` },
           method: 'put',
           baseURL: process.env.REACT_APP_SERVER,
-          url: `/games/${gameObjToUpdate._id}`,
-          data: gameObjToUpdate
+          url: `/games/${gameToUpdate._id}`,
+          data: gameToUpdate
         }
         let updatedGame = await axios(config)
 
         let updatedGameArray = this.state.games.map(existingGame => {
-          return existingGame._id === gameObjToUpdate._id
+          return existingGame._id === gameToUpdate._id
             ? updatedGame.data
             : existingGame
         })
-
+        console.log(updatedGameArray);
         this.setState({
-          games: updatedGameArray,
+          userGames: updatedGameArray,
           showModal: true
         })
+        
       }
 
     } catch (error) {
       console.log(error.message)
     }
   }
+  //!! ASK AUDREY IF THIS IS SET UP CORRECTLY */
+  // postGame = async (gameToUpdate) => {
+  //   try {
+  //     if (this.props.auth0.isAuthenticated) {
+  //       const response = await this.props.auth0.getIdTokenClaims();
+
+  //       const jwt = response.__raw;
+
+  //       const config = {
+  //         headers: { "Authorization": `Bearer ${jwt}` },
+  //         method: 'post',
+  //         baseURL: process.env.REACT_APP_SERVER,
+  //         url: `/games`,
+  //         data: gameToUpdate
+  //       }
+
+  //       await axios(config)
+
+  //       this.setState({
+  //         games: [...this.state.userGames, gameToUpdate]
+  //       })
+  //     }
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+
+  //   // try {
+  //   //   let url = `${process.env.REACT_APP_SERVER}/games`
+  //   //   let createdReview = await axios.post(url, gameToUpdate)
+  //   //   this.setState({
+  //   //     games: [...this.state.games, createdReview.data],
+  //   //   })
+  //   // } catch (error) {
+  //   //   console.log(error.message)
+  //   // }
+  // }
+
 
 
   //** React lifecycle to pull user game to home page on load */

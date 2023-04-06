@@ -18,27 +18,7 @@ import {
 
 
 class App extends React.Component {
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-  //     games: [],
-  //     error: '',
-  //     showModal: false,
-  //     selectedGame: {},
-  //   }
-  // }
 
-  // closeModal = () => {
-  //   this.setState({
-  //     showModal: false,
-  //   })
-  // }
-
-  // openModal = () => {
-  //   this.setState({
-  //     showModal: true,
-  //   })
-  // }
 
   render() {
     return (
