@@ -1,21 +1,18 @@
 import React from "react";
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
-
-// import Form from 'react-bootstrap';
-// import Modal from 'react-bootstrap';
-
 import Container from 'react-bootstrap/Container';
 
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import UpdateGameReview from "./UpdateGameReview";
+import UpdateGameReview from "../UpdateGameReview";
 
 class UserHome extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       userGames: [],
+      selectedGame: {},
       error: false,
       errorMessage: '',
       showForm: false,
@@ -57,7 +54,7 @@ class UserHome extends React.Component {
         let gameData = await axios(config);
 
 
-
+        console.log('games coming from DB ', gameData.data);
         this.setState({
           userGames: gameData.data,
           error: false
@@ -111,20 +108,20 @@ class UserHome extends React.Component {
     event.preventDefault();
 
     let gameToUpdate = {
-      title: game.title,
-      playStatus: event.target.play_status.checked,
-      reviewNotes: event.target.reviewNotes.value,
       id: game.id,
+      title: game.title,
       thumbnail: game.thumbnail,
       short_description: game.short_description,
       genre: game.genre,
       freetogame_profile_url: game.freetogame_profile_url,
+      playStatus: event.target.play_status.checked,
+      reviewNotes: event.target.reviewNotes.value,
       email: game.email,
       _id: game._id,
       __v: game.__v
     }
     console.log(gameToUpdate);
-    this.updateGame(gameToUpdate);
+    this.createReview(gameToUpdate);
     this.handleCloseModal();
   }
   //!! ASK AUDREY IF THIS IS SET UP CORRECTLY */
@@ -165,7 +162,7 @@ class UserHome extends React.Component {
   }
 
   //** Create a review for game selected on user games */
-  updateGame = async (gameObjToUpdate) => {
+  createReview = async (gameObjToUpdate) => {
     try {
       if (this.props.auth0.isAuthenticated) {
         const response = await this.props.auth0.getIdTokenClaims();
@@ -211,7 +208,7 @@ class UserHome extends React.Component {
         <Container className='gameCards'>
 
           {this.state.userGames.map((game) =>
-            <Card key={game._id} style={{ width: '18rem' }}>
+            <Card key={game._id} style={{ width: '20rem' }}>
               <Card.Img variant="top" src={game.thumbnail} alt={game.short_description} />
               <Card.Body>
                 <Card.Title>{game.title}</Card.Title>
@@ -223,13 +220,9 @@ class UserHome extends React.Component {
                   <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
                 </ListGroup>
 
-                {this.state.showModal
-                  ?
-                  <UpdateGameReview userGames={game} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit} handleCloseModal={this.handleCloseModal} />
-                  :
-                  <button style={{ display: "inline-block" }} className="nes-btn is-primary" onClick={() => { this.setState({ showModal: true }) }}>Write a Review</button>}
 
 
+              <button style={{ display: "inline-block" }} className="nes-btn is-primary" onClick={() => { this.setState({ showModal: true, selectedGame: game }) }}>Write a Review</button>
                 <button className="nes-btn is-error" style={{ display: "inline-block" }} onClick={() => { this.deleteGame(game._id) }}>Delete Game</button>
                 <Card.Text className="reviewNotes">
                   {/* User Play Status: {game.playStatus} */}
@@ -240,6 +233,11 @@ class UserHome extends React.Component {
             </Card>
 
           )}
+          {this.state.showModal &&
+            
+            <UpdateGameReview userGames={this.state.selectedGame} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit} handleCloseModal={this.handleCloseModal} />
+            
+            }
 
         </Container>
 
