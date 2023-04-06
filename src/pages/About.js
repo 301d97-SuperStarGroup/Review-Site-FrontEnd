@@ -29,7 +29,7 @@ class About extends React.Component {
           <Card.Body>
             <Card.Title>Laurence Vinzen</Card.Title>
             <Card.Text>
-              test
+              US Navy veteran as GSE (gas turbine systems technician). Student at Code Fellows. Looking forward to creating my own apps with all features I like in one app, so I won't have to have 2 calculators, 2 maps, etc.   
             </Card.Text>
 
             <Card.Link href="https://github.com/teamidol" target="_blank"><img id='githublogo' src={githubLogo} alt='Github'/></Card.Link>
