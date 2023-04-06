@@ -44,7 +44,7 @@ class About extends React.Component {
             <Card.Title>Reece Renninger</Card.Title>
             <Card.Text>
               I am a United States Marine Corps veteran who served as an infantry rifleman. I am currently attending Code Fellows to become a Full-Stack Developer specializing in JavaScript.
-              Fun Fact: Reece is going to be probably become a backend dev because he has no styling capabilities and the front end hates him.
+              I don't have a favorite video game, I play too many and too much to have a favorite.
             </Card.Text>
             <Card.Link href="https://github.com/ReeceRenninger" target="_blank"><img id='githublogo' src={githubLogo} alt='Github'/></Card.Link>
             <Card.Link href="https://www.linkedin.com/in/reecerenninger/" target="_blank"><img id='linkedlogo' src={linkedLogo} alt='linkedIn'/></Card.Link>

@@ -5,7 +5,6 @@ class UpdateGameReview extends React.Component {
 
 
   render() {
-    console.log(this.props.userGames.title);
     return (
           <Modal show={this.props.show} onHide= {this.props.handleCloseModal}>
 

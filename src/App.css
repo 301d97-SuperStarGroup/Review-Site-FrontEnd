@@ -60,12 +60,8 @@ body{
   text-align: center;
 }
 /** Buttons on user games for review/delete */
-.is-error{
-  justify-content: center !important;
-}
-.is-primary{
 
-}
+
 
 /** about us cards**/
 #aboutUsCards{
@@ -151,7 +147,6 @@ text-align: center;
   width: fit-content !important;
   display: block !important;
   margin: auto !important;
-
   font-family: 'Press Start 2P', cursive;
 
 }
