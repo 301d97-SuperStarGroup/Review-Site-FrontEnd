@@ -1,21 +1,18 @@
 import React from "react";
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
-
-// import Form from 'react-bootstrap';
-// import Modal from 'react-bootstrap';
-
 import Container from 'react-bootstrap/Container';
 
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import UpdateGameReview from "./UpdateGameReview";
+import UpdateGameReview from "../UpdateGameReview";
 
 class UserHome extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       userGames: [],
+      selectedGame: {},
       error: false,
       errorMessage: '',
       showForm: false,
@@ -23,6 +20,7 @@ class UserHome extends React.Component {
       gameToUpdate: null
     }
   }
+
 
   //** Modal Handlers for show/hide */
   handleCloseModal = () => {
@@ -57,7 +55,7 @@ class UserHome extends React.Component {
         let gameData = await axios(config);
 
 
-
+        console.log('games coming from DB ', gameData.data);
         this.setState({
           userGames: gameData.data,
           error: false
@@ -92,10 +90,10 @@ class UserHome extends React.Component {
         }
         await axios(config);
 
-        let updatedGames = this.state.userGames.filter(game => game._id !== id);
+        let deletedGames = this.state.userGames.filter(game => game._id !== id);
         console.log('Game id that was deleted ' + id);
         this.setState({
-          userGames: updatedGames,
+          userGames: deletedGames,
           error: false
         });
       }
@@ -111,61 +109,25 @@ class UserHome extends React.Component {
     event.preventDefault();
 
     let gameToUpdate = {
-      title: game.title,
-      playStatus: event.target.play_status.checked,
-      reviewNotes: event.target.reviewNotes.value,
       id: game.id,
+      title: game.title,
       thumbnail: game.thumbnail,
       short_description: game.short_description,
       genre: game.genre,
       freetogame_profile_url: game.freetogame_profile_url,
+      playStatus: event.target.play_status.checked,
+      reviewNotes: event.target.reviewNotes.value,
       email: game.email,
       _id: game._id,
       __v: game.__v
     }
     console.log(gameToUpdate);
-    this.updateGame(gameToUpdate);
+    this.createReview(gameToUpdate);
     this.handleCloseModal();
-  }
-  //!! ASK AUDREY IF THIS IS SET UP CORRECTLY */
-  postGame = async (gameToUpdate) => {
-    try {
-      if (this.props.auth0.isAuthenticated) {
-        const response = await this.props.auth0.getIdTokenClaims();
-
-        const jwt = response.__raw;
-
-        const config = {
-          headers: { "Authorization": `Bearer ${jwt}` },
-          method: 'post',
-          baseURL: process.env.REACT_APP_SERVER,
-          url: `/games`,
-          data: gameToUpdate
-        }
-
-        await axios(config)
-
-        this.setState({
-          games: [...this.state.games, gameToUpdate]
-        })
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-
-    // try {
-    //   let url = `${process.env.REACT_APP_SERVER}/games`
-    //   let createdReview = await axios.post(url, gameToUpdate)
-    //   this.setState({
-    //     games: [...this.state.games, createdReview.data],
-    //   })
-    // } catch (error) {
-    //   console.log(error.message)
-    // }
   }
 
   //** Create a review for game selected on user games */
-  updateGame = async (gameObjToUpdate) => {
+  createReview = async (gameToUpdate) => {
     try {
       if (this.props.auth0.isAuthenticated) {
         const response = await this.props.auth0.getIdTokenClaims();
@@ -176,27 +138,65 @@ class UserHome extends React.Component {
           headers: { "Authorization": `Bearer ${jwt}` },
           method: 'put',
           baseURL: process.env.REACT_APP_SERVER,
-          url: `/games/${gameObjToUpdate._id}`,
-          data: gameObjToUpdate
+          url: `/games/${gameToUpdate._id}`,
+          data: gameToUpdate
         }
         let updatedGame = await axios(config)
 
-        let updatedGameArray = this.state.games.map(existingGame => {
-          return existingGame._id === gameObjToUpdate._id
+        let updatedGameArray = this.state.userGames.map(existingGame => {
+          return existingGame._id === gameToUpdate._id
             ? updatedGame.data
             : existingGame
         })
-
+        console.log(updatedGameArray);
         this.setState({
-          games: updatedGameArray,
-          showModal: true
+          userGames: updatedGameArray,
+
         })
+
       }
 
     } catch (error) {
       console.log(error.message)
     }
   }
+  //!! ASK AUDREY IF THIS IS SET UP CORRECTLY */
+  // postGame = async (gameToUpdate) => {
+  //   try {
+  //     if (this.props.auth0.isAuthenticated) {
+  //       const response = await this.props.auth0.getIdTokenClaims();
+
+  //       const jwt = response.__raw;
+
+  //       const config = {
+  //         headers: { "Authorization": `Bearer ${jwt}` },
+  //         method: 'post',
+  //         baseURL: process.env.REACT_APP_SERVER,
+  //         url: `/games`,
+  //         data: gameToUpdate
+  //       }
+
+  //       await axios(config)
+
+  //       this.setState({
+  //         games: [...this.state.userGames, gameToUpdate]
+  //       })
+  //     }
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+
+  //   // try {
+  //   //   let url = `${process.env.REACT_APP_SERVER}/games`
+  //   //   let createdReview = await axios.post(url, gameToUpdate)
+  //   //   this.setState({
+  //   //     games: [...this.state.games, createdReview.data],
+  //   //   })
+  //   // } catch (error) {
+  //   //   console.log(error.message)
+  //   // }
+  // }
+
 
 
   //** React lifecycle to pull user game to home page on load */
@@ -223,13 +223,7 @@ class UserHome extends React.Component {
                   <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
                 </ListGroup>
 
-                {this.state.showModal
-                  ?
-                  <UpdateGameReview userGames={game} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit} handleCloseModal={this.handleCloseModal} />
-                  :
-                  <button style={{ display: "inline-block" }} className="nes-btn is-primary" onClick={() => { this.setState({ showModal: true }) }}>Write a Review</button>}
-
-
+                <button style={{ display: "inline-block" }} className="nes-btn is-primary" onClick={() => { this.setState({ showModal: true, selectedGame: game }) }}>Write a Review</button>
                 <button className="nes-btn is-error" style={{ display: "inline-block" }} onClick={() => { this.deleteGame(game._id) }}>Delete Game</button>
                 <Card.Text className="reviewNotes">
                   {/* User Play Status: {game.playStatus} */}
@@ -240,6 +234,11 @@ class UserHome extends React.Component {
             </Card>
 
           )}
+          {this.state.showModal &&
+
+            <UpdateGameReview userGames={this.state.selectedGame} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit} handleCloseModal={this.handleCloseModal} />
+
+          }
 
         </Container>
 

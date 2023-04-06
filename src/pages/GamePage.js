@@ -90,22 +90,20 @@ class GamePage extends React.Component {
       });
     }
   }
-  //TODO: Find a way to allow user to GO BACK to displaying all games with filter form
+  
   //** Allows users to filter games based off genres provided by Game API */
   handleGenreSelected = (event) => {
-    // this is not working correctly
     if (event.target.value === 'View Games by Genre') {
       let allRender = this.state.games.filter(e => e.title.length > 0);
+      
       this.setState({
         filteredGames: allRender
       })
     } else {
-      // this is working fine
       let selectedGenre = event.target.value;
-      console.log(this.state.games);
+  
       let genreData = this.state.games.filter(g => g.genre.toLowerCase() === selectedGenre.toLowerCase());
-      console.log(genreData);
-
+     
       this.setState({
         filteredGames: genreData
       })
