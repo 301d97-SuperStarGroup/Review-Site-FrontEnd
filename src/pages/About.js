@@ -56,7 +56,7 @@ class About extends React.Component {
           <Card.Body>
             <Card.Title>Sarah Glass</Card.Title>
             <Card.Text>
-              test
+              Student software developer with a background in social work, teaching, and marketing. I decided to pursue coding after experiencing a layoff in digital marketing. My strongest skill sets are communication, problem solving, critical thinking, and language learning. Up next I'll be spending time learning about Python and data science. My favorite videogame is the original Super Mario Bros for NES.
             </Card.Text>
             <Card.Link href="https://github.com/s-glass" target="_blank"><img id='githublogo' src={githubLogo} alt='Github'/></Card.Link>
             <Card.Link href="https://www.linkedin.com/in/sarah-codes/" target="_blank"><img id='linkedlogo' src={linkedLogo} alt='linkedIn'/></Card.Link>
