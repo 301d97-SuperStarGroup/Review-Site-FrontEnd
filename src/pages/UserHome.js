@@ -211,7 +211,7 @@ class UserHome extends React.Component {
         <Container className='gameCards'>
 
           {this.state.userGames.map((game) =>
-            <Card key={game._id} style={{ width: '20rem' }}>
+            <Card key={game._id} style={{ width: '18rem' }}>
               <Card.Img variant="top" src={game.thumbnail} alt={game.short_description} />
               <Card.Body>
                 <Card.Title>{game.title}</Card.Title>
