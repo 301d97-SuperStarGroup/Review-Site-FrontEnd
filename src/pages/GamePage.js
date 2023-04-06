@@ -83,7 +83,6 @@ class GamePage extends React.Component {
         
         console.log(gameData.data);
 
-        console.log('Is the save button firing?');
       }
     } catch (error) {
       this.setState({
@@ -185,7 +184,7 @@ class GamePage extends React.Component {
                 <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
               </ListGroup>
 
-              <button style={{display: 'block', margin: 'auto'}} onClick={()=>{ this.handleSaveGame(game)}} class="nes-btn is-success">SAVE</button>
+              <button style={{display: 'block', margin: 'auto'}} onClick={()=>{ this.handleSaveGame(game)}} className="nes-btn is-success">SAVE</button>
 
 
             </Card.Body>

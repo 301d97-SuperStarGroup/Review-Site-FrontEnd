@@ -92,12 +92,10 @@ class UserHome extends React.Component {
         }
         await axios(config);
 
-        let updatedGames = this.state.userGames.filter(game => game._id !== id); // added
-
-        console.log('Is the delete firing?')
+        let updatedGames = this.state.userGames.filter(game => game._id !== id); 
 
         this.setState({
-          userGames: updatedGames,    // added
+          userGames: updatedGames,    
           error: false
         });
       }
@@ -180,7 +178,7 @@ class UserHome extends React.Component {
         })
   
         this.setState({
-          games: updatedGameArray,
+          userGames: updatedGameArray,
           showModal: true
         })
       }
@@ -198,13 +196,12 @@ class UserHome extends React.Component {
   }
 
   render() {
-    console.log(this.state.userGames);
     return (
       <>
         <Container className='gameCards'>
 
           {this.state.userGames.map((game) =>
-            <Card key={game._id} style={{ width: '18rem' }}>
+            <Card key={game._id} style={{ width: '20rem' }}>
               <Card.Img variant="top" src={game.thumbnail} alt={game.short_description} />
               <Card.Body>
                 <Card.Title>{game.title}</Card.Title>
@@ -215,17 +212,15 @@ class UserHome extends React.Component {
                 <ListGroup variant="flush">
                   <ListGroup.Item>Genre: {game.genre}</ListGroup.Item>
                 </ListGroup>
-                {/* <button class="nes-btn is-primary" style={{display: 'flex', flexWrap: 'wrap',padding: ''}} onClick = {() => { this.updateGame(game) }}>Write a Review</button>
-                 */}
 
-                {this.state.showModal ? <UpdateGameReview userGames={game} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit} /> : 
-                <button class="nes-btn is-primary" style={{display: 'flex', flexWrap: 'wrap',padding: ''}} onClick = {() => { this.setState({showModal:true}) }}>Write a Review</button>}
-                {/* // TODO: CHECK BUTTONS TOMORROW */}
-                {this.state.showModal ? <UpdateGameReview userGames={game} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit} handleCloseModal ={this.handleCloseModal}/> : <button class="nes-btn is-primary" style={{display: 'flex', flexWrap: 'wrap',padding: ''}} onClick = {() => { this.setState({showModal:true}) }}>Write a Review</button>}
+                {this.state.showModal ? <UpdateGameReview userGames={game} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit} handleCloseModal ={this.handleCloseModal}/> : <button className="nes-btn is-primary"  onClick = {() => { this.setState({showModal:true}) }}>Write a Review</button>}
 
 
-                <button   class="nes-btn is-error" style={{display: 'flex', flexWrap: 'wrap'}} onClick = {() => { this.deleteGame(game._id) }}>Delete Game</button>
-              
+                <button   className="nes-btn is-error"  onClick = {() => { this.deleteGame(game._id) }}>Delete Game</button>
+                 <Card.Text className="reviewNotes">
+                  {/* User Play Status: {game.playStatus} */}
+                  User Review: {game.reviewNotes}
+                 </Card.Text>
 
               </Card.Body>
             </Card>
