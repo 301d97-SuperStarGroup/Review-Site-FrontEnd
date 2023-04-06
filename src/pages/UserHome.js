@@ -217,7 +217,8 @@ class UserHome extends React.Component {
                 </ListGroup>
                 {/* <button class="nes-btn is-primary" style={{display: 'flex', flexWrap: 'wrap',padding: ''}} onClick = {() => { this.updateGame(game) }}>Write a Review</button>
                  */}
-                {this.state.showModal ? <UpdateGameReview userGames={game} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit} /> : <button class="nes-btn is-primary" style={{display: 'flex', flexWrap: 'wrap',padding: ''}} onClick = {() => { this.setState({showModal:true}) }}>Write a Review</button>}
+                {this.state.showModal ? <UpdateGameReview userGames={game} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit} /> : 
+                <button class="nes-btn is-primary" style={{display: 'flex', flexWrap: 'wrap',padding: ''}} onClick = {() => { this.setState({showModal:true}) }}>Write a Review</button>}
 
                 <button   class="nes-btn is-error" style={{display: 'flex', flexWrap: 'wrap'}} onClick = {() => { this.deleteGame(game._id) }}>Delete Game</button>
 
