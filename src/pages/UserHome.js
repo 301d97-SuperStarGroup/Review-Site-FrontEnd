@@ -220,7 +220,7 @@ class UserHome extends React.Component {
 
                 {this.state.showModal ? <UpdateGameReview userGames={game} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit} /> : 
                 <button class="nes-btn is-primary" style={{display: 'flex', flexWrap: 'wrap',padding: ''}} onClick = {() => { this.setState({showModal:true}) }}>Write a Review</button>}
-                // TODO: CHECK BUTTONS TOMORROW
+                {/* // TODO: CHECK BUTTONS TOMORROW */}
                 {this.state.showModal ? <UpdateGameReview userGames={game} show={this.state.showModal} handleGameSubmit={this.handleGameSubmit} handleCloseModal ={this.handleCloseModal}/> : <button class="nes-btn is-primary" style={{display: 'flex', flexWrap: 'wrap',padding: ''}} onClick = {() => { this.setState({showModal:true}) }}>Write a Review</button>}
 
 
