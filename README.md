@@ -10,7 +10,7 @@ The problem or pain point we are looking to solve is to create a place for users
 
 ## Wireframing
 
-![Wirefrmae Image](/src/img/301-project-whiteboard.png)
+![Wireframe Image](/src/img/301-project-whiteboard.png)
 
 ## Domain Modeling
 
