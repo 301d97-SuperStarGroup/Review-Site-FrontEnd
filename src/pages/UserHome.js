@@ -160,42 +160,7 @@ class UserHome extends React.Component {
       console.log(error.message)
     }
   }
-  //!! ASK AUDREY IF THIS IS SET UP CORRECTLY */
-  // postGame = async (gameToUpdate) => {
-  //   try {
-  //     if (this.props.auth0.isAuthenticated) {
-  //       const response = await this.props.auth0.getIdTokenClaims();
-
-  //       const jwt = response.__raw;
-
-  //       const config = {
-  //         headers: { "Authorization": `Bearer ${jwt}` },
-  //         method: 'post',
-  //         baseURL: process.env.REACT_APP_SERVER,
-  //         url: `/games`,
-  //         data: gameToUpdate
-  //       }
-
-  //       await axios(config)
-
-  //       this.setState({
-  //         games: [...this.state.userGames, gameToUpdate]
-  //       })
-  //     }
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-
-  //   // try {
-  //   //   let url = `${process.env.REACT_APP_SERVER}/games`
-  //   //   let createdReview = await axios.post(url, gameToUpdate)
-  //   //   this.setState({
-  //   //     games: [...this.state.games, createdReview.data],
-  //   //   })
-  //   // } catch (error) {
-  //   //   console.log(error.message)
-  //   // }
-  // }
+  
 
 
 
