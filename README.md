@@ -8,10 +8,6 @@ We are creating a game review site that will allow users to create, update, dele
 
 The problem or pain point we are looking to solve is to create a place for users to explore online games, track games they're interested in, and create reviews for games they have played.
 
-## Free To Game API
-
-https://www.freetogame.com/
-
 ## Wireframing
 
 ![Wirefrmae Image](/src/img/301-project-whiteboard.png)
@@ -28,4 +24,9 @@ https://www.freetogame.com/
 
 ## References
 
+- [Auth0](https://auth0.com/)
+- [Free to Game API](https://www.freetogame.com/)
+- [MongoDB](https://www.mongodb.com/)
 - Intro gif was downloaded [Matthew Henry Gif](https://giphy.com/gifs/gg-good-game-galaga-RtpmUzMbynBeCgEa5E)
+- All the help received from Audrey our instructor and the TAs of Code Fellows!
+
