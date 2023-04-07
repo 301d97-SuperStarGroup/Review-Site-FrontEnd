@@ -2,7 +2,6 @@ import React from "react";
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
-
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import UpdateGameReview from "../UpdateGameReview";
@@ -72,7 +71,6 @@ class UserHome extends React.Component {
 
 
   //** Delete a user saved game via button */
-
   deleteGame = async (id) => {
     try {
       if (this.props.auth0.isAuthenticated) {
@@ -104,6 +102,7 @@ class UserHome extends React.Component {
       });
     }
   }
+
   //  ** Triggered from form submission on UpdateGameReviews and invokes updateGame"
   handleGameSubmit = (event, game) => {
     event.preventDefault();
@@ -160,14 +159,13 @@ class UserHome extends React.Component {
       console.log(error.message)
     }
   }
-  
+
 
 
 
   //** React lifecycle to pull user game to home page on load */
   componentDidMount() {
     this.getUserGames();
-
   }
 
   render() {
