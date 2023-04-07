@@ -4,7 +4,6 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
-
 import { Container } from 'react-bootstrap';
 import { withAuth0 } from '@auth0/auth0-react';
 
@@ -21,7 +20,7 @@ class GamePage extends React.Component {
     }
   }
 
-  // !! Auth0 way of building out handlers
+  
   //** Handles Game(s) Loading on GamePage on page Load */
   handleGameLoad = async (event) => {
     try {
@@ -30,24 +29,22 @@ class GamePage extends React.Component {
 
         const jwt = response.__raw;
 
-
         const config = {
           headers: { "Authorization": `Bearer ${jwt}` },
-          method: 'get', //post when saving
+          method: 'get',
           baseURL: process.env.REACT_APP_SERVER,
           url: '/games'
-          //data property that will be our game object to save
         }
+
         let gameData = await axios(config);
-
-
 
         this.setState({
           games: gameData.data,
-          filteredGames: gameData.data, // originally populates filteredGames with data to be manipulated with genre handler
+          filteredGames: gameData.data,
           error: false
         });
       }
+
     } catch (error) {
       this.setState({
         error: true,
@@ -64,23 +61,19 @@ class GamePage extends React.Component {
 
         const jwt = response.__raw;
 
-
         const config = {
           headers: { "Authorization": `Bearer ${jwt}` },
-          method: 'post', //post when saving
+          method: 'post', 
           baseURL: process.env.REACT_APP_SERVER,
           url: '/games',
           data: gameObj
-          //data property will be our game object to save
         }
-        await axios(config);
 
+        await axios(config);
 
         this.setState({
           error: false
         });
-
-        console.log('Game information that was saved: ' + gameObj.title);
 
       }
     } catch (error) {
@@ -177,7 +170,7 @@ class GamePage extends React.Component {
         <Container className='gameCards'>
 
           {this.state.filteredGames.map((game) =>
-            <Card key={game.id} style={{ width: '18rem' }}>
+            <Card key={game.id} style={{ width: '20rem' }}>
               <Card.Img variant="top" src={game.thumbnail} alt={game.short_description} />
               <Card.Body>
                 <Card.Title>{game.title}</Card.Title>
@@ -205,17 +198,3 @@ class GamePage extends React.Component {
 }
 
 export default withAuth0(GamePage);
-
-
-
-
-// id: { type: Number, required: true },
-// title: { type: String, required: true },
-// thumbnail: { type: String, required: true }, //"thumbnail": "https://www.freetogame.com/g/540/thumbnail.jpg",
-// short_description: {type: String, required: true },
-// genre: { type: String, required: true },
-// platform: { type: String, required: true },
-// freetogame_profile_url: {type: String, required: true},
-// playStatus: { type: Boolean, required: true },
-// reviewNotes: {type: String, required: true },
-// email: {type: String, required: true},

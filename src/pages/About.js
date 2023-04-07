@@ -11,7 +11,6 @@ class About extends React.Component {
   render() {
     return (
       <section id='aboutUsCards'>
-        {/* NEED TO GET IMAGES TO LOAD */}
         <Card style={{ width: '25rem' }}>
           <Card.Img variant="top" src={dajon} alt='DaJons Profile pic'/>
           <Card.Body>

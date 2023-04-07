@@ -3,15 +3,12 @@ import { Container, Form, Button, Modal } from 'react-bootstrap'
 
 class UpdateGameReview extends React.Component {
 
-
   render() {
-    console.log('game in modal ', this.props.userGames);
     return (
           <Modal show={this.props.show} onHide= {this.props.handleCloseModal}>
 
             <Modal.Header closeButton ><Modal.Title>Game Notes</Modal.Title></Modal.Header>
                
-
             <Container className="mt-5">
 
               <Form onSubmit={(e) => {this.props.handleGameSubmit(e, this.props.userGames)}}>
