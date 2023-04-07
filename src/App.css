@@ -81,6 +81,15 @@ body{
   font-family: 'Press Start 2P', cursive;
 }
 
+.userGames{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-evenly;
+  text-align: center;
+  padding: 5px;
+  font-family: 'Press Start 2P', cursive;
+}
+
 /** genre in game cards */
 .list-group-item{
 text-align: center;

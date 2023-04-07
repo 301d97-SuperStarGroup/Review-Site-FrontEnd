@@ -53,8 +53,6 @@ class UserHome extends React.Component {
         }
         let gameData = await axios(config);
 
-
-        console.log('games coming from DB ', gameData.data);
         this.setState({
           userGames: gameData.data,
           error: false
@@ -89,7 +87,7 @@ class UserHome extends React.Component {
         await axios(config);
 
         let deletedGames = this.state.userGames.filter(game => game._id !== id);
-        console.log('Game id that was deleted ' + id);
+  
         this.setState({
           userGames: deletedGames,
           error: false
@@ -120,7 +118,7 @@ class UserHome extends React.Component {
       _id: game._id,
       __v: game.__v
     }
-    console.log(gameToUpdate);
+
     this.createReview(gameToUpdate);
     this.handleCloseModal();
   }
@@ -147,7 +145,7 @@ class UserHome extends React.Component {
             ? updatedGame.data
             : existingGame
         })
-        console.log(updatedGameArray);
+      
         this.setState({
           userGames: updatedGameArray,
 
@@ -171,7 +169,7 @@ class UserHome extends React.Component {
   render() {
     return (
       <>
-        <Container className='gameCards'>
+        <Container className='userGames'>
 
           {this.state.userGames.map((game) =>
             <Card key={game._id} style={{ width: '20rem' }}>

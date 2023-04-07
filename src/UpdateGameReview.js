@@ -5,7 +5,6 @@ class UpdateGameReview extends React.Component {
 
 
   render() {
-    console.log('game in modal ', this.props.userGames);
     return (
           <Modal show={this.props.show} onHide= {this.props.handleCloseModal}>
 
