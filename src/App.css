@@ -55,10 +55,9 @@ body{
 
 }
 
-/** Review notes section on userHome*/
-
-/** Buttons on user games for review/delete */
-
+.navbar-brand{
+  font-family: 'Press Start 2P', cursive;
+}
 
 
 /** about us cards**/
