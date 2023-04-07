@@ -4,7 +4,6 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
-
 import { Container } from 'react-bootstrap';
 import { withAuth0 } from '@auth0/auth0-react';
 
@@ -30,17 +29,14 @@ class GamePage extends React.Component {
 
         const jwt = response.__raw;
 
-
         const config = {
           headers: { "Authorization": `Bearer ${jwt}` },
           method: 'get',
           baseURL: process.env.REACT_APP_SERVER,
           url: '/games'
-          
         }
+
         let gameData = await axios(config);
-
-
 
         this.setState({
           games: gameData.data,
@@ -48,6 +44,7 @@ class GamePage extends React.Component {
           error: false
         });
       }
+
     } catch (error) {
       this.setState({
         error: true,
@@ -64,17 +61,15 @@ class GamePage extends React.Component {
 
         const jwt = response.__raw;
 
-
         const config = {
           headers: { "Authorization": `Bearer ${jwt}` },
           method: 'post', 
           baseURL: process.env.REACT_APP_SERVER,
           url: '/games',
           data: gameObj
-          
         }
-        await axios(config);
 
+        await axios(config);
 
         this.setState({
           error: false

@@ -31,8 +31,7 @@ class UserHome extends React.Component {
   handleOpenModal = () => {
     this.setState({
       showModal: true,
-
-    })
+    });
   }
 
 
@@ -44,13 +43,13 @@ class UserHome extends React.Component {
 
         const jwt = response.__raw;
 
-
         const config = {
           headers: { "Authorization": `Bearer ${jwt}` },
           method: 'get',
           baseURL: process.env.REACT_APP_SERVER,
           url: '/myGames'
         }
+
         let gameData = await axios(config);
 
         this.setState({
@@ -76,14 +75,13 @@ class UserHome extends React.Component {
 
         const jwt = response.__raw;
 
-
         const config = {
           headers: { "Authorization": `Bearer ${jwt}` },
           method: 'delete',
           baseURL: process.env.REACT_APP_SERVER,
           url: `/games/${id}`
-
         }
+        
         await axios(config);
 
         let deletedGames = this.state.userGames.filter(game => game._id !== id);
@@ -93,6 +91,7 @@ class UserHome extends React.Component {
           error: false
         });
       }
+
     } catch (error) {
       this.setState({
         error: true,
@@ -138,6 +137,7 @@ class UserHome extends React.Component {
           url: `/games/${gameToUpdate._id}`,
           data: gameToUpdate
         }
+
         let updatedGame = await axios(config)
 
         let updatedGameArray = this.state.userGames.map(existingGame => {
@@ -157,7 +157,6 @@ class UserHome extends React.Component {
       console.log(error.message)
     }
   }
-
 
 
 
@@ -187,7 +186,6 @@ class UserHome extends React.Component {
                 <button style={{ display: "inline-block" }} className="nes-btn is-primary" onClick={() => { this.setState({ showModal: true, selectedGame: game }) }}>Write a Review</button>
                 <button className="nes-btn is-error" style={{ display: "inline-block" }} onClick={() => { this.deleteGame(game._id) }}>Delete Game</button>
                 <Card.Text className="reviewNotes">
-                  {/* User Play Status: {game.playStatus} */}
                   User Review: {game.reviewNotes}
                 </Card.Text>
 
